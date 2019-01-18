@@ -1,6 +1,9 @@
 <template>
 	<div>
 		House.vue
+		<ul>
+		    <li v-for="house in houses">{{ house.name }}</li>
+		</ul>
 	</div>
 </template>
 

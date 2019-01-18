@@ -1,5 +1,5 @@
 <template>
-	<div id="app-layout">layout.vue	
+	<div id="app-layout">
 		<navigation></navigation>	
 		<router-view></router-view>
 	</div>

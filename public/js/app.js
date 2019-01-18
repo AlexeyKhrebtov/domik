@@ -1786,6 +1786,10 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
 /* harmony default export */ __webpack_exports__["default"] = ({
   /*
   Defines the computed properties on the component.
@@ -1924,6 +1928,9 @@ __webpack_require__.r(__webpack_exports__);
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
+//
+//
+//
 //
 //
 //
@@ -2449,53 +2456,53 @@ var render = function() {
   var _vm = this
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
-  return _c(
-    "nav",
-    { staticClass: "top-navigation" },
-    [
-      _vm._v("Navigation.vue\n\t\t"),
-      _c("router-link", { attrs: { to: { name: "home" } } }, [
-        _c("span", { staticClass: "logo" }, [_vm._v("Domik")])
-      ]),
+  return _c("nav", { staticClass: "navbar is-primary" }, [
+    _c("div", { staticClass: "container" }, [
+      _c(
+        "div",
+        { staticClass: "navbar-brand" },
+        [
+          _c(
+            "router-link",
+            { staticClass: "navbar-item", attrs: { to: { name: "home" } } },
+            [_vm._v("\n\t\t\t\t\tDOMIK\n\t\t\t\t")]
+          ),
+          _vm._v(" "),
+          _vm._m(0)
+        ],
+        1
+      ),
       _vm._v(" "),
-      _c("ul", { staticClass: "links" }, [
-        _c(
-          "li",
-          [
-            _c("router-link", { attrs: { to: { name: "houses" } } }, [
-              _vm._v("Houses")
-            ])
-          ],
-          1
-        ),
-        _vm._v(" "),
-        _c(
-          "li",
-          [
-            _c("router-link", { attrs: { to: { name: "newhouse" } } }, [
-              _vm._v("newhouse")
-            ])
-          ],
-          1
-        )
-      ]),
-      _vm._v(" "),
-      _vm._m(0)
-    ],
-    1
-  )
+      _c(
+        "div",
+        { staticClass: "navbar-menu" },
+        [
+          _c("router-link", { attrs: { to: { name: "houses" } } }, [
+            _vm._v("Houses")
+          ]),
+          _vm._v(" "),
+          _c("router-link", { attrs: { to: { name: "newhouse" } } }, [
+            _vm._v("newhouse")
+          ])
+        ],
+        1
+      )
+    ])
+  ])
 }
 var staticRenderFns = [
   function() {
     var _vm = this
     var _h = _vm.$createElement
     var _c = _vm._self._c || _h
-    return _c("div", { staticClass: "right" }, [
-      _c("img", {
-        staticClass: "avatar",
-        attrs: { src: "user.avatar", show: "userLoadStatus == 2" }
-      })
-    ])
+    return _c(
+      "span",
+      {
+        staticClass: "navbar-burger burger",
+        attrs: { "data-target": "navMenu" }
+      },
+      [_c("span"), _vm._v(" "), _c("span"), _vm._v(" "), _c("span")]
+    )
   }
 ]
 render._withStripped = true
@@ -2522,12 +2529,7 @@ var render = function() {
   return _c(
     "div",
     { attrs: { id: "app-layout" } },
-    [
-      _vm._v("layout.vue\t\n\t"),
-      _c("navigation"),
-      _vm._v(" "),
-      _c("router-view")
-    ],
+    [_c("navigation"), _vm._v(" "), _c("router-view")],
     1
   )
 }
@@ -2702,7 +2704,16 @@ var render = function() {
   var _vm = this
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
-  return _c("div", [_vm._v("\n\tHouse.vue\n")])
+  return _c("div", [
+    _vm._v("\n\tHouse.vue\n\t"),
+    _c(
+      "ul",
+      _vm._l(_vm.houses, function(house) {
+        return _c("li", [_vm._v(_vm._s(house.name))])
+      }),
+      0
+    )
+  ])
 }
 var staticRenderFns = []
 render._withStripped = true

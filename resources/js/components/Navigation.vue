@@ -2,23 +2,27 @@
 
 </style>
 <template>
-    <nav class="top-navigation">Navigation.vue
-		<router-link :to="{ name: 'home'}">
-			<span class="logo">Domik</span>
-		</router-link>
+    <nav class="navbar is-primary">
+    	<div class="container">
 
-		<ul class="links">
-			<li>
+    		<div class="navbar-brand">
+    			<router-link :to="{ name: 'home'}" class="navbar-item">
+					DOMIK
+				</router-link>
+
+				<span class="navbar-burger burger" data-target="navMenu">
+					<span></span>
+					<span></span>
+					<span></span>
+				</span>
+			</div>
+
+			<div class="navbar-menu">		
 				<router-link :to="{ name: 'houses' }">Houses</router-link>
-			</li>
-			<li>
 				<router-link :to="{ name: 'newhouse' }">newhouse</router-link>
-			</li>
-		</ul>
+			</div>
 
-		<div class="right">
-			<img class="avatar" src="user.avatar" show="userLoadStatus == 2"/>
-		</div>    
+		</div>		
     </nav>
 </template>
 <script>
