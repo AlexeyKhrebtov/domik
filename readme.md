@@ -11,3 +11,8 @@ php artisan make:controller Api/HouseController --api --model=House
 https://serversideup.net/courses/api-driven-development-laravel-vuejs/
 https://github.com/serversideup/roastandbrew/tree/master/resources/assets/js
 
+---------
+
+git add .
+git commit -m "first commit"
+git push -u origin master
