@@ -17,10 +17,17 @@ export default {
 		POST 	/api/v1/houses
 	 */
 	postAddNewHouse: function( name ){
-		return axios.get( APP_CONFIG.API_URL + '/houses',
+		let formData = new FormData();
+
+		formData.append('name', name);
+
+		return axios.post( APP_CONFIG.API_URL + '/houses',
+			formData,
 			{
-				name: name
+				headers: {
+					'Content-Type': 'multipart/form-data'
+				}
 			}
-		);
-	},
+		)
+	}
 }

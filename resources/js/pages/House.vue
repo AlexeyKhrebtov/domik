@@ -1,6 +1,6 @@
 <template>
 	<div>
-
+		House.vue
 	</div>
 </template>
 

@@ -1,6 +1,6 @@
 <template>
-	<div id="app-layout">layout
-		
+	<div id="app-layout">layout.vue	
+		<navigation></navigation>	
 		<router-view></router-view>
 	</div>
 </template>
@@ -10,7 +10,7 @@
 
 	export default {
 		components: {
-			//Navigation
+			Navigation
     	},
 
     	created(){

@@ -28,7 +28,7 @@ class HouseController extends Controller
     public function store(Request $request)
     {
         $house = new House();
-        $house->name = Request::get('name');
+        $house->name = $request->name;
         $house->save();
 
         return response()->json($house, 201);

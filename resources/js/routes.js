@@ -12,43 +12,36 @@ import store from './store.js';
 */
 Vue.use( VueRouter )
 
-import HomePage from './pages/Home.vue';
-
 export default new VueRouter({
 	//mode: 'history',
 	routes: [
 		{
 			path: '/',
 			name: 'layout',
-			component: Vue.component( 'Layout', require( './layouts/Layout.vue' ) ),
-			children: [
-				
-		
+			component: Vue.component( 'Layout',  require( './layouts/Layout.vue' ).default ),
+			children: [		
 				{
 					path: '/home',
 					name: 'home',
-					//component: Vue.component( 'Home', require( './pages/Home.vue' ) )
-					component: HomePage
-				},
-				
+					component: Vue.component( 'Home', require( './pages/Home.vue' ).default )
+				},				
 				{
-					path: '/house',
+					path: '/houses',
 					name: 'houses',
-					component: Vue.component( 'Houses', require( './pages/House.vue' ) )
+					component: Vue.component( 'Houses', require( './pages/House.vue' ).default )
 				},
 				
 				{
-					path: '/house/new',
+					path: '/houses/new',
 					name: 'newhouse',
-					component: Vue.component( 'NewHouse', require( './pages/House.new.vue' ) )
+					component: Vue.component( 'NewHouse', require( './pages/House.new.vue' ).default )
 				},
 				
 				{
-					path: '/house/:id',
+					path: '/houses/:id',
 					name: 'house',
-					component: Vue.component( 'House', require( './pages/House.vue' ) )
+					component: Vue.component( 'House', require( './pages/House.vue' ).default )
 				},
-				
 			]
 		}	
 

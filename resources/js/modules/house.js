@@ -16,7 +16,9 @@ export const house = {
     	housesLoadStatus: 0,
 
     	house: {},
-    	houseLoadStatus: 0
+    	houseLoadStatus: 0,
+
+    	houseAddStatus: 0
     },
 
     /*
@@ -49,7 +51,21 @@ export const house = {
 		          commit( 'setHouse', [] );
 		          commit( 'setHouseLoadStatus', 3 );
 		        });
-        }
+        },
+
+		// добавить новый дом
+        addHouse( { commit, state, dispatch }, data ){
+			commit( 'setHouseAddedStatus', 1 );
+
+			HouseAPI.postAddNewHouse( data.name )
+				.then( function( response ){
+					commit( 'setHouseAddedStatus', 2 );
+					dispatch( 'loadHouses' );
+				})
+				.catch( function(){
+					commit( 'setHouseAddedStatus', 3 );
+				});
+		}
     },
 
     /*
@@ -70,7 +86,14 @@ export const house = {
 	    // устанавливает дом
 	    setHouse( state, house ){
 	      state.house = house;
-	    }
+	    },
+
+	    setHouseAddedStatus( state, status ){
+			state.houseAddStatus = status;
+		},
+		getHouseAddStatus( state ){
+			return state.houseAddStatus;
+		}
 	},
 
 	/*

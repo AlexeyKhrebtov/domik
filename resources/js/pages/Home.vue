@@ -1,5 +1,5 @@
 <template>
-	<div id="home">3333
+	<div id="home">home.vue
 		<span v-show="housesLoadStatus == 1">Loading</span>
 		<span v-show="housesLoadStatus == 2">houses loaded successfully!</span>
 		<span v-show="housesLoadStatus == 3">houses loaded unsuccessfully!</span>
@@ -7,6 +7,8 @@
 		<ul>
 		    <li v-for="house in houses">{{ house.name }}</li>
 		</ul>
+
+		<router-view></router-view>
 	</div>
 </template>
 

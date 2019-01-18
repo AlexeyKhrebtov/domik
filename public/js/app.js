@@ -1785,6 +1785,7 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
 /* harmony default export */ __webpack_exports__["default"] = ({
   /*
   Defines the computed properties on the component.
@@ -1800,8 +1801,7 @@ __webpack_require__.r(__webpack_exports__);
     /*
     Retrieves the User from Vuex
     */
-    user: function user() {
-      return this.$store.getters.getUser;
+    user: function user() {//return this.$store.getters.getUser;
     }
   }
 });
@@ -1827,7 +1827,8 @@ __webpack_require__.r(__webpack_exports__);
 //
 
 /* harmony default export */ __webpack_exports__["default"] = ({
-  components: {//Navigation
+  components: {
+    Navigation: _components_Navigation_vue__WEBPACK_IMPORTED_MODULE_0__["default"]
   },
   created: function created() {
     this.$store.dispatch('loadHouses'); //this.$store.dispatch( 'loadUser' );
@@ -1845,6 +1846,8 @@ __webpack_require__.r(__webpack_exports__);
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
+//
+//
 //
 //
 //
@@ -1888,7 +1891,27 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
-/* harmony default export */ __webpack_exports__["default"] = ({});
+//
+//
+//
+//
+//
+//
+//
+/* harmony default export */ __webpack_exports__["default"] = ({
+  data: function data() {
+    return {
+      name: ''
+    };
+  },
+  methods: {
+    submitNewHouse: function submitNewHouse() {
+      this.$store.dispatch('addHouse', {
+        name: this.name
+      });
+    }
+  }
+});
 
 /***/ }),
 
@@ -2430,7 +2453,7 @@ var render = function() {
     "nav",
     { staticClass: "top-navigation" },
     [
-      _vm._v("2222\n\t\t"),
+      _vm._v("Navigation.vue\n\t\t"),
       _c("router-link", { attrs: { to: { name: "home" } } }, [
         _c("span", { staticClass: "logo" }, [_vm._v("Domik")])
       ]),
@@ -2439,33 +2462,42 @@ var render = function() {
         _c(
           "li",
           [
-            _c("router-link", { attrs: { to: { name: "cafes" } } }, [
-              _vm._v("\n\t\t\t\t\tCafes\n\t\t\t\t")
+            _c("router-link", { attrs: { to: { name: "houses" } } }, [
+              _vm._v("Houses")
+            ])
+          ],
+          1
+        ),
+        _vm._v(" "),
+        _c(
+          "li",
+          [
+            _c("router-link", { attrs: { to: { name: "newhouse" } } }, [
+              _vm._v("newhouse")
             ])
           ],
           1
         )
       ]),
       _vm._v(" "),
-      _c("div", { staticClass: "right" }, [
-        _c("img", {
-          directives: [
-            {
-              name: "show",
-              rawName: "v-show",
-              value: _vm.userLoadStatus == 2,
-              expression: "userLoadStatus == 2"
-            }
-          ],
-          staticClass: "avatar",
-          attrs: { src: _vm.user.avatar }
-        })
-      ])
+      _vm._m(0)
     ],
     1
   )
 }
-var staticRenderFns = []
+var staticRenderFns = [
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("div", { staticClass: "right" }, [
+      _c("img", {
+        staticClass: "avatar",
+        attrs: { src: "user.avatar", show: "userLoadStatus == 2" }
+      })
+    ])
+  }
+]
 render._withStripped = true
 
 
@@ -2490,7 +2522,12 @@ var render = function() {
   return _c(
     "div",
     { attrs: { id: "app-layout" } },
-    [_vm._v("layout\n\t\n\t"), _c("router-view")],
+    [
+      _vm._v("layout.vue\t\n\t"),
+      _c("navigation"),
+      _vm._v(" "),
+      _c("router-view")
+    ],
     1
   )
 }
@@ -2516,61 +2553,68 @@ var render = function() {
   var _vm = this
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
-  return _c("div", { attrs: { id: "home" } }, [
-    _vm._v("3333\n\t"),
-    _c(
-      "span",
-      {
-        directives: [
-          {
-            name: "show",
-            rawName: "v-show",
-            value: _vm.housesLoadStatus == 1,
-            expression: "housesLoadStatus == 1"
-          }
-        ]
-      },
-      [_vm._v("Loading")]
-    ),
-    _vm._v(" "),
-    _c(
-      "span",
-      {
-        directives: [
-          {
-            name: "show",
-            rawName: "v-show",
-            value: _vm.housesLoadStatus == 2,
-            expression: "housesLoadStatus == 2"
-          }
-        ]
-      },
-      [_vm._v("houses loaded successfully!")]
-    ),
-    _vm._v(" "),
-    _c(
-      "span",
-      {
-        directives: [
-          {
-            name: "show",
-            rawName: "v-show",
-            value: _vm.housesLoadStatus == 3,
-            expression: "housesLoadStatus == 3"
-          }
-        ]
-      },
-      [_vm._v("houses loaded unsuccessfully!")]
-    ),
-    _vm._v(" "),
-    _c(
-      "ul",
-      _vm._l(_vm.houses, function(house) {
-        return _c("li", [_vm._v(_vm._s(house.name))])
-      }),
-      0
-    )
-  ])
+  return _c(
+    "div",
+    { attrs: { id: "home" } },
+    [
+      _vm._v("home.vue\n\t"),
+      _c(
+        "span",
+        {
+          directives: [
+            {
+              name: "show",
+              rawName: "v-show",
+              value: _vm.housesLoadStatus == 1,
+              expression: "housesLoadStatus == 1"
+            }
+          ]
+        },
+        [_vm._v("Loading")]
+      ),
+      _vm._v(" "),
+      _c(
+        "span",
+        {
+          directives: [
+            {
+              name: "show",
+              rawName: "v-show",
+              value: _vm.housesLoadStatus == 2,
+              expression: "housesLoadStatus == 2"
+            }
+          ]
+        },
+        [_vm._v("houses loaded successfully!")]
+      ),
+      _vm._v(" "),
+      _c(
+        "span",
+        {
+          directives: [
+            {
+              name: "show",
+              rawName: "v-show",
+              value: _vm.housesLoadStatus == 3,
+              expression: "housesLoadStatus == 3"
+            }
+          ]
+        },
+        [_vm._v("houses loaded unsuccessfully!")]
+      ),
+      _vm._v(" "),
+      _c(
+        "ul",
+        _vm._l(_vm.houses, function(house) {
+          return _c("li", [_vm._v(_vm._s(house.name))])
+        }),
+        0
+      ),
+      _vm._v(" "),
+      _c("router-view")
+    ],
+    1
+  )
 }
 var staticRenderFns = []
 render._withStripped = true
@@ -2594,7 +2638,47 @@ var render = function() {
   var _vm = this
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
-  return _c("div")
+  return _c("div", [
+    _vm._v("\n\tHouse.new.vue\n\t"),
+    _c("form", { attrs: { action: "" } }, [
+      _c("label", { attrs: { for: "" } }, [
+        _vm._v("\n\t\t\tname\n\t\t\t"),
+        _c("input", {
+          directives: [
+            {
+              name: "model",
+              rawName: "v-model",
+              value: _vm.name,
+              expression: "name"
+            }
+          ],
+          attrs: { type: "text", placeholder: "name" },
+          domProps: { value: _vm.name },
+          on: {
+            input: function($event) {
+              if ($event.target.composing) {
+                return
+              }
+              _vm.name = $event.target.value
+            }
+          }
+        })
+      ]),
+      _vm._v(" "),
+      _c(
+        "a",
+        {
+          staticClass: "button",
+          on: {
+            click: function($event) {
+              _vm.submitNewHouse()
+            }
+          }
+        },
+        [_vm._v("Add House")]
+      )
+    ])
+  ])
 }
 var staticRenderFns = []
 render._withStripped = true
@@ -2618,7 +2702,7 @@ var render = function() {
   var _vm = this
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
-  return _c("div")
+  return _c("div", [_vm._v("\n\tHouse.vue\n")])
 }
 var staticRenderFns = []
 render._withStripped = true
@@ -17529,8 +17613,12 @@ __webpack_require__.r(__webpack_exports__);
   	POST 	/api/v1/houses
    */
   postAddNewHouse: function postAddNewHouse(name) {
-    return axios.get(_config_js__WEBPACK_IMPORTED_MODULE_0__["APP_CONFIG"].API_URL + '/houses', {
-      name: name
+    var formData = new FormData();
+    formData.append('name', name);
+    return axios.post(_config_js__WEBPACK_IMPORTED_MODULE_0__["APP_CONFIG"].API_URL + '/houses', formData, {
+      headers: {
+        'Content-Type': 'multipart/form-data'
+      }
     });
   }
 });
@@ -17802,7 +17890,8 @@ var house = {
     houses: [],
     housesLoadStatus: 0,
     house: {},
-    houseLoadStatus: 0
+    houseLoadStatus: 0,
+    houseAddStatus: 0
   },
 
   /*
@@ -17832,6 +17921,19 @@ var house = {
         commit('setHouse', []);
         commit('setHouseLoadStatus', 3);
       });
+    },
+    // добавить новый дом
+    addHouse: function addHouse(_ref3, data) {
+      var commit = _ref3.commit,
+          state = _ref3.state,
+          dispatch = _ref3.dispatch;
+      commit('setHouseAddedStatus', 1);
+      _api_house_js__WEBPACK_IMPORTED_MODULE_0__["default"].postAddNewHouse(data.name).then(function (response) {
+        commit('setHouseAddedStatus', 2);
+        dispatch('loadHouses');
+      }).catch(function () {
+        commit('setHouseAddedStatus', 3);
+      });
     }
   },
 
@@ -17852,6 +17954,12 @@ var house = {
     // устанавливает дом
     setHouse: function setHouse(state, house) {
       state.house = house;
+    },
+    setHouseAddedStatus: function setHouseAddedStatus(state, status) {
+      state.houseAddStatus = status;
+    },
+    getHouseAddStatus: function getHouseAddStatus(state) {
+      return state.houseAddStatus;
     }
   },
 
@@ -18105,7 +18213,6 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var vue__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(vue__WEBPACK_IMPORTED_MODULE_0__);
 /* harmony import */ var vue_router__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! vue-router */ "./node_modules/vue-router/dist/vue-router.esm.js");
 /* harmony import */ var _store_js__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./store.js */ "./resources/js/store.js");
-/* harmony import */ var _pages_Home_vue__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./pages/Home.vue */ "./resources/js/pages/Home.vue");
 /**
  * routes.js
  * 
@@ -18118,30 +18225,28 @@ __webpack_require__.r(__webpack_exports__);
 */
 
 vue__WEBPACK_IMPORTED_MODULE_0___default.a.use(vue_router__WEBPACK_IMPORTED_MODULE_1__["default"]);
-
 /* harmony default export */ __webpack_exports__["default"] = (new vue_router__WEBPACK_IMPORTED_MODULE_1__["default"]({
   //mode: 'history',
   routes: [{
     path: '/',
     name: 'layout',
-    component: vue__WEBPACK_IMPORTED_MODULE_0___default.a.component('Layout', __webpack_require__(/*! ./layouts/Layout.vue */ "./resources/js/layouts/Layout.vue")),
+    component: vue__WEBPACK_IMPORTED_MODULE_0___default.a.component('Layout', __webpack_require__(/*! ./layouts/Layout.vue */ "./resources/js/layouts/Layout.vue").default),
     children: [{
       path: '/home',
       name: 'home',
-      //component: Vue.component( 'Home', require( './pages/Home.vue' ) )
-      component: _pages_Home_vue__WEBPACK_IMPORTED_MODULE_3__["default"]
+      component: vue__WEBPACK_IMPORTED_MODULE_0___default.a.component('Home', __webpack_require__(/*! ./pages/Home.vue */ "./resources/js/pages/Home.vue").default)
     }, {
-      path: '/house',
+      path: '/houses',
       name: 'houses',
-      component: vue__WEBPACK_IMPORTED_MODULE_0___default.a.component('Houses', __webpack_require__(/*! ./pages/House.vue */ "./resources/js/pages/House.vue"))
+      component: vue__WEBPACK_IMPORTED_MODULE_0___default.a.component('Houses', __webpack_require__(/*! ./pages/House.vue */ "./resources/js/pages/House.vue").default)
     }, {
-      path: '/house/new',
+      path: '/houses/new',
       name: 'newhouse',
-      component: vue__WEBPACK_IMPORTED_MODULE_0___default.a.component('NewHouse', __webpack_require__(/*! ./pages/House.new.vue */ "./resources/js/pages/House.new.vue"))
+      component: vue__WEBPACK_IMPORTED_MODULE_0___default.a.component('NewHouse', __webpack_require__(/*! ./pages/House.new.vue */ "./resources/js/pages/House.new.vue").default)
     }, {
-      path: '/house/:id',
+      path: '/houses/:id',
       name: 'house',
-      component: vue__WEBPACK_IMPORTED_MODULE_0___default.a.component('House', __webpack_require__(/*! ./pages/House.vue */ "./resources/js/pages/House.vue"))
+      component: vue__WEBPACK_IMPORTED_MODULE_0___default.a.component('House', __webpack_require__(/*! ./pages/House.vue */ "./resources/js/pages/House.vue").default)
     }]
   }]
 }));

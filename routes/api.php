@@ -19,4 +19,5 @@ Route::group(['prefix' => 'v1', 'middleware' => 'auth:api'], function(){
 	});
 
 	Route::get('/houses', 'Api\HouseController@index');
+	Route::post('/houses', 'Api\HouseController@store');
 });
