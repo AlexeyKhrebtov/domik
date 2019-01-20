@@ -23,6 +23,7 @@ export const house = {
 
     /*
     	Определяет действия, используемые для извлечения данных.
+    	Вызывается через dispatch('имя_действия')
      */
     actions: {
     	// загрузка списка домов
@@ -72,6 +73,8 @@ export const house = {
     	Определяет используемые мутации
      */
     mutations: {
+    	// state - локальное состояние модуля
+    	// status - данные, которые нужно обновить
 	    setHousesLoadStatus( state, status ){
 	      state.housesLoadStatus = status;
 	    },
@@ -115,7 +118,7 @@ export const house = {
 
 	    // возвращает индивидуальный дом
 	    getHouse( state ){
-	      return state.housee;
+	      return state.house;
 	    }
 	}
 }

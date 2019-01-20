@@ -1,5 +1,5 @@
 <template>
-	<div>111-App.vue
+	<div>111-App.vue НЕ ИСПОЛЬЗУЕТСЯ
 		{{name}}
 		<router-view></router-view>
 	</div>

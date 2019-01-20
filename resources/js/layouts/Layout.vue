@@ -1,16 +1,23 @@
 <template>
 	<div id="app-layout">
-		<navigation></navigation>	
-		<router-view></router-view>
+		<navigation></navigation>
+		<section class="section">
+			<div class="container">
+				<router-view></router-view>
+			</div>
+		</section>
+		<appfooter></appfooter>
 	</div>
 </template>
 
 <script>
 	import Navigation from '../components/Navigation.vue';
+	import Appfooter from '../components/Footer.vue';
 
 	export default {
 		components: {
-			Navigation
+			Navigation,
+			Appfooter
     	},
 
     	created(){

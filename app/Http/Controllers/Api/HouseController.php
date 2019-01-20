@@ -5,7 +5,9 @@ namespace App\Http\Controllers\Api;
 use App\House;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
+use App\Http\Requests\StoreHouseRequest;
 
+include __DIR__.'/../../Requests/StoreHouseRequest.php';
 class HouseController extends Controller
 {
     /**
@@ -25,7 +27,7 @@ class HouseController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(StoreHouseRequest $request)
     {
         $house = new House();
         $house->name = $request->name;

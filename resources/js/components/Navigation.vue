@@ -1,6 +1,3 @@
-<style>
-
-</style>
 <template>
     <nav class="navbar is-primary">
     	<div class="container">
@@ -10,21 +7,25 @@
 					DOMIK
 				</router-link>
 
-				<span class="navbar-burger burger" data-target="navMenu">
+				<span class="navbar-burger burger " data-target="navMenu" @click="toggleBurgerMenu" :class="{'is-active': isActiveBurgerMenu}" >
 					<span></span>
 					<span></span>
 					<span></span>
 				</span>
 			</div>
 
-			<div class="navbar-menu">		
-				<router-link :to="{ name: 'houses' }">Houses</router-link>
-				<router-link :to="{ name: 'newhouse' }">newhouse</router-link>
+			<div class="navbar-menu" :class="{'is-active': isActiveBurgerMenu}">	
+				<div class="navbar-end">
+					<router-link class="navbar-item" :to="{ name: 'home' }">Home</router-link>
+					<router-link class="navbar-item" :to="{ name: 'houses' }">Список домов</router-link>
+					<router-link class="navbar-item" :to="{ name: 'newhouse' }">Добавить дом</router-link>
+				</div>				
 			</div>
 
 		</div>		
     </nav>
 </template>
+
 <script>
     export default {
 		/*
@@ -44,6 +45,22 @@
 			user(){
 				//return this.$store.getters.getUser;
 			}
+		},
+		data() {
+			return {
+				isActiveBurgerMenu: false
+			}
+		},
+		methods: {
+			toggleBurgerMenu: function() {
+				this.isActiveBurgerMenu = !this.isActiveBurgerMenu;
+			}
 		}
     }
 </script>
+
+<style>
+	.navbar-brand a.navbar-item {
+		font-weight:bold;
+	}
+</style>

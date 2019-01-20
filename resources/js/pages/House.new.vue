@@ -1,12 +1,19 @@
 <template>
 	<div>
-		House.new.vue
+		<h1 class="title">House.new.vue</h1>
+
 		<form action="">
-			<label for="">
-				name
-				<input type="text" placeholder="name" v-model="name">
-			</label>
-			<a class="button" v-on:click="submitNewHouse()">Add House</a>
+			<div class="field">				
+				<label class="label" for="">Название объекта</label>
+				<div class="control" :class="{'has-icons-right': !validations.name.is_valid}">
+					<input type="text" class="input" :class="{'is-danger': !validations.name.is_valid}" placeholder="Название" v-model="name">
+					<span class="icon is-small is-right" v-show="!validations.name.is_valid">
+						<i class="fas fa-exclamation-triangle"></i>
+					</span>
+				</div>
+				<p class="help is-danger" v-show="!validations.name.is_valid">{{ validations.name.text }}</p>
+			</div>
+			<a class="button" v-on:click="submitNewHouse()">Добавить объект</a>
 		</form>
 	</div>
 </template>
@@ -15,15 +22,37 @@
 	export default {		
     	data() {
     		return {
-    			name: ''
+    			// данные формы
+    			name: '',
+    			// валидация
+    			validations: {
+    				name: {
+    					is_valid: true,
+    					text: ''
+    				}
+    			}
     		}
     	},
 
     	methods: {
 			submitNewHouse(){
-				this.$store.dispatch( 'addHouse', {
-					name: this.name
-				});
+				if (this.validateNewHouse()) {
+					this.$store.dispatch( 'addHouse', {
+						name: this.name
+					});
+				}				
+			},
+
+			// Валидируем форму
+			validateNewHouse() {
+				let isValidNewHouseForm = true;
+
+				if (false && this.name.trim() == '') {
+					isValidNewHouseForm = false;
+					this.validations.name.is_valid = false;
+					this.validations.name.text = 'Введите название объекта';
+				}
+				return isValidNewHouseForm;
 			}
 		}
 	}
