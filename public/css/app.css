@@ -11172,3 +11172,7 @@ label.panel-block:hover {
   padding: 3rem 1.5rem 6rem;
 }
 
+section.section.main {
+  min-height: calc(100vh - 220px);
+}
+

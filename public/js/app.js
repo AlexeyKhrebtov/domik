@@ -3302,7 +3302,7 @@ var render = function() {
     [
       _c("navigation"),
       _vm._v(" "),
-      _c("section", { staticClass: "section" }, [
+      _c("section", { staticClass: "section main" }, [
         _c("div", { staticClass: "container" }, [_c("router-view")], 1)
       ]),
       _vm._v(" "),

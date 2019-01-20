@@ -1,2 +1,6 @@
 // Bulma
 @import "~bulma/bulma.sass";
+
+section.section.main {
+	min-height: calc(100vh - 220px);
+}
