@@ -39,8 +39,8 @@ export default new VueRouter({
 				
 				{
 					path: '/houses/:id',
-					name: 'house',
-					component: Vue.component( 'House', require( './pages/House.vue' ).default )
+					name: 'house_view',
+					component: Vue.component( 'ViewHouse', require( './pages/House.view.vue' ).default )
 				},
 			]
 		}	

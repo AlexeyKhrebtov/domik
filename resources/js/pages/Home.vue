@@ -6,11 +6,18 @@
 		<div class="notification is-success" v-show="housesLoadStatus == 2">houses loaded successfully!</div>
 		<span v-show="housesLoadStatus == 3">houses loaded unsuccessfully!</span>
 
-		<ul>
-		    <li v-for="house in houses">{{ house.name }}</li>
-		</ul>
+		<nav class="panel">
+			<p class="panel-heading">Список объектов / проектов</p>
+			<template v-for="house in houses">
+				<router-link class="panel-block" v-bind:to="{ name: 'house_view', params: {id: 1} }">
+					<span class="panel-icon has-text-info">
+						<i class="fas fa-building" aria-hidden="true"></i>
+					</span>
+					{{ house.name }}
+				</router-link>
+			</template>
+		</nav>
 
-		<router-view></router-view>
 	</div>
 </template>
 
