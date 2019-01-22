@@ -1,5 +1,5 @@
 <template>
-    <nav class="navbar is-primary">
+    <nav class="navbar">
     	<div class="container">
 
     		<div class="navbar-brand">
@@ -21,8 +21,7 @@
 					<router-link class="navbar-item" :to="{ name: 'newhouse' }">Добавить дом</router-link>
 				</div>				
 			</div>
-
-		</div>		
+		</div>
     </nav>
 </template>
 

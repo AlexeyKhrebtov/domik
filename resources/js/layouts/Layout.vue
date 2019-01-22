@@ -1,6 +1,7 @@
 <template>
 	<div id="app-layout">
 		<navigation></navigation>
+		<breadcrumbs></breadcrumbs>
 		<section class="section main">
 			<div class="container">
 				<router-view></router-view>
@@ -12,11 +13,13 @@
 
 <script>
 	import Navigation from '../components/Navigation.vue';
-	import Appfooter from '../components/Footer.vue';
+	import Breadcrumbs from '../components/Breadcrumbs.vue';
+	import Appfooter from '../components/Footer.vue';	
 
 	export default {
 		components: {
 			Navigation,
+			Breadcrumbs,
 			Appfooter
     	},
 

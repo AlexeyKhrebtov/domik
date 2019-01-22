@@ -28,7 +28,7 @@ class HouseController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function store(StoreHouseRequest $request)
-    {
+    {        
         $house = new House();
         $house->name = $request->name;
         $house->save();
@@ -42,10 +42,9 @@ class HouseController extends Controller
      * @param  \App\House  $house
      * @return \Illuminate\Http\Response
      */
-    public function show(House $house)
+    public function show(House $house, $id)
     {
-        var_dump($house);
-        return response()->json( $house );
+        return response()->json( $house::find($id) );
     }
 
     /**

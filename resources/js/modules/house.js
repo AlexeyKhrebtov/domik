@@ -43,7 +43,7 @@ export const house = {
         // загрузки индивидуального дома
         loadHouse( { commit }, data ){
         	commit( 'setHouseLoadStatus', 1 );
-    		HouseAPI.getHouses()
+    		HouseAPI.getHouse(data.id)
 		        .then( function( response ){
 		          commit( 'setHouse', response.data );
 		          commit( 'setHouseLoadStatus', 2 );
