@@ -2,7 +2,7 @@
 |-------------------------------------------------------------------------------
 | VUEX modules/house.js
 |-------------------------------------------------------------------------------
-| The Vuex data store for the cafes
+| The Vuex data store for the houses
 */
 
 import HouseAPI from '../api/house.js';

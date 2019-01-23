@@ -16,6 +16,14 @@ https://github.com/serversideup/roastandbrew/tree/master/resources/assets/js
 https://www.toptal.com/laravel/restful-laravel-api-tutorial
 ---------
 
+```
+php artisan make:migration create_xxxxxxs_table
+php artisan migrate
+php artisan make:model Xxxxxx
+php artisan make:controller Api/XxxxxxController --api --model=Xxxxxx
+```
++++++++
+
 git add .
 git commit -m "first commit"
 git push -u origin master

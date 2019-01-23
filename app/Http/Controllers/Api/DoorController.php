@@ -2,13 +2,11 @@
 
 namespace App\Http\Controllers\Api;
 
-use App\House;
+use App\Door;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
-use App\Http\Requests\StoreHouseRequest;
 
-include __DIR__.'/../../Requests/StoreHouseRequest.php';
-class HouseController extends Controller
+class DoorController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -17,8 +15,7 @@ class HouseController extends Controller
      */
     public function index()
     {
-        $houses= House::all();
-        return response()->json( $houses );
+        //
     }
 
     /**
@@ -27,34 +24,35 @@ class HouseController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(StoreHouseRequest $request)
-    {        
-        $house = new House();
-        $house->name = $request->name;
-        $house->save();
+    public function store(Request $request)
+    {
+        $door = new Door();
+        $door->number = $request->number;
+        $door->house_id = $request->house_id;
+        $door->save();
 
-        return response()->json($house, 201);
+        return response()->json($door, 201);
     }
 
     /**
      * Display the specified resource.
      *
-     * @param  \App\House  $house
+     * @param  \App\Door  $door
      * @return \Illuminate\Http\Response
      */
-    public function show(House $house)
+    public function show(Door $door)
     {
-        return response()->json( $house->load('doors') );
+        //
     }
 
     /**
      * Update the specified resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @param  \App\House  $house
+     * @param  \App\Door  $door
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, House $house)
+    public function update(Request $request, Door $door)
     {
         //
     }
@@ -62,10 +60,10 @@ class HouseController extends Controller
     /**
      * Remove the specified resource from storage.
      *
-     * @param  \App\House  $house
+     * @param  \App\Door  $door
      * @return \Illuminate\Http\Response
      */
-    public function destroy(House $house)
+    public function destroy(Door $door)
     {
         //
     }

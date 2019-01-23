@@ -14,7 +14,7 @@
 <script>
 	import Navigation from '../components/Navigation.vue';
 	import Breadcrumbs from '../components/Breadcrumbs.vue';
-	import Appfooter from '../components/Footer.vue';	
+	import Appfooter from '../components/Footer.vue';
 
 	export default {
 		components: {

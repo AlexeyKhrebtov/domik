@@ -10,8 +10,7 @@
 		</section>
 		
 		<!-- ToDo: add Konva -->
-		<div style="width:100%; height: 600px; border:1px solid #999; background-image: linear-gradient(to right top, #ffb7b7, #fec9d7, #f9dcee, #f8eefa, #ffffff);">			
-		</div>
+		<konva></konva>
 
 		<section class="section">
 			<div class="columns">
@@ -19,14 +18,12 @@
 					<!-- ToDo: разнести по компонентам? -->
 					<nav class="panel">
 						<p class="panel-heading">Парадные</p>
-						<a href="" class="panel-block">1</a>
-						<a href="" class="panel-block">2</a>
+						<template v-for="door in house.doors">
+							<a href="" class="panel-block">{{ door.number }}</a>
+						</template>
+						
 						<div class="panel-block">
-							<button class="button is-link is-outlined is-fullwidth">
-								добавить парадную
-							</button>
-							<br>
-							<router-link class="button" v-bind:to="{ name: 'newdoor', params: {id: 1} }">asd</router-link>
+							<router-link class="button is-link is-outlined is-fullwidth" v-bind:to="{ name: 'newdoor', params: {id: house.id} }">добавить парадную</router-link>
 						</div>
 					</nav>
 				</div>
@@ -61,7 +58,13 @@
 </template>
 
 <script>
+	import konva from '../components/Konva.vue';
+
 	export default {
+		components: {
+			konva
+		},
+
 		created(){
 			this.$store.dispatch( 'loadHouse', {
 				id: this.$route.params.id

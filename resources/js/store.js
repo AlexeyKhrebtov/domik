@@ -26,12 +26,13 @@ Vue.use( Vuex )
     Импортирует все модули, используемые в приложении для создания хранилища данных.
 */
 import { house } from './modules/house.js'
+import { door } from './modules/door.js'
 
 /*
   Exports our data store.
 */
 export default new Vuex.Store({
     modules: {
-    	house
+    	house, door
     }
 });

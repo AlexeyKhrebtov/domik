@@ -17,7 +17,11 @@ Route::group(['prefix' => 'v1', 'middleware' => 'auth:api'], function(){
 	    return $request->user();
 	});
 
+	// Дома
 	Route::get('/houses', 'Api\HouseController@index');
-	Route::get('/houses/{id}', 'Api\HouseController@show');
+	Route::get('/houses/{house}', 'Api\HouseController@show');
 	Route::post('/houses', 'Api\HouseController@store');
+
+	// Парадные
+	Route::post('/doors', 'Api\DoorController@store');
 });

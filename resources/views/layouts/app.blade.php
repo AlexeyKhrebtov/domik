@@ -7,20 +7,17 @@
     <!-- CSRF Token -->
     <meta name="csrf-token" content="{{ csrf_token() }}">
 
-    <title>{{ config('app.name', 'Laravel') }}</title>
+    <title>{{ config('app.name', 'Domik') }}</title>
 
     <!-- Styles -->
     <link href="{{ mix('css/app.css') }}" rel="stylesheet">
 </head>
 <body>
-НЕ ДОЛЖНЕ ИСПОЛЬЗОВАТЬСЯ
-    <main>
-        Шаблон: layout/app.blade.php
-        <br> контент:
-        @yield('content')
-    </main>
+
+    @yield('content')
+    <!-- layouts/app.blade.php -->
 
     <!-- Scripts -->
-    <script src="{{ mix('js/app.js') }}" defer></script>
+    <!-- <script src="{{ mix('js/app.js') }}" defer></script> -->
 </body>
 </html>
