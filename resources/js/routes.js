@@ -39,8 +39,8 @@ export default new VueRouter({
 				
 				{
 					path: '/houses/:id',
-					name: 'house_view',
-					component: Vue.component( 'ViewHouse', require( './pages/House.view.vue' ).default ),
+					name: 'house_view2',
+					component: Vue.component( 'House', require( './pages/House.vue' ).default ),
 					props: (route) => {
 						const id = Number.parseInt(route.params.id, 10);
 						if (Number.isNaN(id)) {
@@ -50,6 +50,11 @@ export default new VueRouter({
 					},
 					children: [
 						{
+							path: '/',
+							name: 'house_view',
+							component: Vue.component( 'ViewHouse', require( './pages/House.view.vue' ).default )
+						},
+						{
 							path: 'doors',
 							name: 'house_doors',
 							component: Vue.component( 'Doors', require( './pages/Door.vue' ).default )
@@ -58,6 +63,18 @@ export default new VueRouter({
 							path: 'doors/new',
 							name: 'newdoor',
 							component: Vue.component( 'NewDoor', require( './pages/Door.new.vue' ).default )
+						},
+						{
+							path: 'doors/view/:door_number',
+							name: 'door_view',
+							component: Vue.component( 'ViewDoor', require( './pages/Door.view.vue' ).default ),
+							children: [
+								{
+									path: 'floors',
+									name: 'door_floors',
+									component: Vue.component( 'Floors', require( './pages/Floor.vue' ).default )
+								}
+							]
 						}
 					]
 				},

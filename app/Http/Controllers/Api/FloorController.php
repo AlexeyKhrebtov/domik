@@ -2,11 +2,11 @@
 
 namespace App\Http\Controllers\Api;
 
-use App\Door;
+use App\Floor;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 
-class DoorController extends Controller
+class FloorController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -26,33 +26,33 @@ class DoorController extends Controller
      */
     public function store(Request $request)
     {
-        $door = new Door();
-        $door->number = $request->number;
-        $door->house_id = $request->house_id;
-        $door->save();
+        $floor = new Floor();
+        $floor->number = $request->number;
+        $floor->door_id = $request->door_id;
+        $floor->save();
 
-        return response()->json($door, 201);
+        return response()->json($floor, 201);
     }
 
     /**
      * Display the specified resource.
      *
-     * @param  \App\Door  $door
+     * @param  \App\Floor  $floor
      * @return \Illuminate\Http\Response
      */
-    public function show(Door $door)
+    public function show(Floor $floor)
     {
-        return response()->json( $door->load('floors') );
+        return response()->json();
     }
 
     /**
      * Update the specified resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Door  $door
+     * @param  \App\Floor  $floor
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Door $door)
+    public function update(Request $request, Floor $floor)
     {
         //
     }
@@ -60,10 +60,10 @@ class DoorController extends Controller
     /**
      * Remove the specified resource from storage.
      *
-     * @param  \App\Door  $door
+     * @param  \App\Floor  $floor
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Door $door)
+    public function destroy(Floor $floor)
     {
         //
     }

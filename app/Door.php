@@ -13,4 +13,12 @@ class Door extends Model
     public function house() {
     	return $this->belongsTo('App\House');
     }
+
+    /**
+     * Получить список этажей в подъезде
+     * @return [type] [description]
+     */
+    public function floors() {
+    	return $this->hasMany('App\Floor');
+    }
 }

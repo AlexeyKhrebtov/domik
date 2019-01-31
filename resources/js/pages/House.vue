@@ -4,6 +4,7 @@
 		<ul>
 		    <li v-for="house in houses">{{ house.name }}</li>
 		</ul>
+		<router-view></router-view>
 	</div>
 </template>
 

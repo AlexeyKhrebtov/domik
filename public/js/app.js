@@ -2064,6 +2064,41 @@ __webpack_require__.r(__webpack_exports__);
 
 /***/ }),
 
+/***/ "./node_modules/babel-loader/lib/index.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/pages/Door.view.vue?vue&type=script&lang=js&":
+/*!***************************************************************************************************************************************************************!*\
+  !*** ./node_modules/babel-loader/lib??ref--4-0!./node_modules/vue-loader/lib??vue-loader-options!./resources/js/pages/Door.view.vue?vue&type=script&lang=js& ***!
+  \***************************************************************************************************************************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+/* harmony default export */ __webpack_exports__["default"] = ({
+  created: function created() {
+    this.$store.dispatch('loadDoor', {
+      id: this.$route.params.id
+    });
+  },
+  computed: {
+    door: function door() {
+      return this.$store.getters.getDoor;
+    }
+  }
+});
+
+/***/ }),
+
 /***/ "./node_modules/babel-loader/lib/index.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/pages/Door.vue?vue&type=script&lang=js&":
 /*!**********************************************************************************************************************************************************!*\
   !*** ./node_modules/babel-loader/lib??ref--4-0!./node_modules/vue-loader/lib??vue-loader-options!./resources/js/pages/Door.vue?vue&type=script&lang=js& ***!
@@ -2285,6 +2320,7 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
   components: {
@@ -2316,6 +2352,7 @@ __webpack_require__.r(__webpack_exports__);
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
+//
 //
 //
 //
@@ -25649,6 +25686,46 @@ render._withStripped = true
 
 /***/ }),
 
+/***/ "./node_modules/vue-loader/lib/loaders/templateLoader.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/pages/Door.view.vue?vue&type=template&id=a5ca69a8&":
+/*!*******************************************************************************************************************************************************************************************************!*\
+  !*** ./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/vue-loader/lib??vue-loader-options!./resources/js/pages/Door.view.vue?vue&type=template&id=a5ca69a8& ***!
+  \*******************************************************************************************************************************************************************************************************/
+/*! exports provided: render, staticRenderFns */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "render", function() { return render; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "staticRenderFns", function() { return staticRenderFns; });
+var render = function() {
+  var _vm = this
+  var _h = _vm.$createElement
+  var _c = _vm._self._c || _h
+  return _c(
+    "div",
+    [
+      _c("h1", { staticClass: "title is-1" }, [_vm._v("Door.view.vue")]),
+      _vm._v(" "),
+      _c("h1", { staticClass: "title is-1" }, [
+        _vm._v("Просмотр парадной № " + _vm._s(_vm.door.number))
+      ]),
+      _vm._v(" "),
+      _c("h2", { staticClass: "subtitle  is-2" }, [_vm._v("Список этажей:")]),
+      _vm._v(" "),
+      _c("router-link", { attrs: { to: { name: "door_floors" } } }, [
+        _vm._v("добавить этаж")
+      ])
+    ],
+    1
+  )
+}
+var staticRenderFns = []
+render._withStripped = true
+
+
+
+/***/ }),
+
 /***/ "./node_modules/vue-loader/lib/loaders/templateLoader.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/pages/Door.vue?vue&type=template&id=0ab947b7&":
 /*!**************************************************************************************************************************************************************************************************!*\
   !*** ./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/vue-loader/lib??vue-loader-options!./resources/js/pages/Door.vue?vue&type=template&id=0ab947b7& ***!
@@ -25665,6 +25742,30 @@ var render = function() {
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
   return _c("div", [_vm._v("Door.vue")])
+}
+var staticRenderFns = []
+render._withStripped = true
+
+
+
+/***/ }),
+
+/***/ "./node_modules/vue-loader/lib/loaders/templateLoader.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/pages/Floor.vue?vue&type=template&id=3bd40653&":
+/*!***************************************************************************************************************************************************************************************************!*\
+  !*** ./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/vue-loader/lib??vue-loader-options!./resources/js/pages/Floor.vue?vue&type=template&id=3bd40653& ***!
+  \***************************************************************************************************************************************************************************************************/
+/*! exports provided: render, staticRenderFns */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "render", function() { return render; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "staticRenderFns", function() { return staticRenderFns; });
+var render = function() {
+  var _vm = this
+  var _h = _vm.$createElement
+  var _c = _vm._self._c || _h
+  return _c("div", [_vm._v("\n\tFloor.vue\n")])
 }
 var staticRenderFns = []
 render._withStripped = true
@@ -25949,133 +26050,70 @@ var render = function() {
   var _vm = this
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
-  return _c(
-    "div",
-    [
-      _c("section", { staticClass: "hero" }, [
-        _c("div", { staticClass: "hero-body" }, [
-          _c("div", { staticClass: "container" }, [
-            _c("h1", { staticClass: "title" }, [
-              _vm._v(_vm._s(_vm.house.name))
-            ]),
-            _vm._v(" "),
-            _c("h2", { staticClass: "subtitle" }, [_vm._v("Общий план дома")])
-          ])
+  return _c("div", [
+    _c("section", { staticClass: "hero" }, [
+      _c("div", { staticClass: "hero-body" }, [
+        _c("div", { staticClass: "container" }, [
+          _c("h1", { staticClass: "title" }, [_vm._v(_vm._s(_vm.house.name))]),
+          _vm._v(" "),
+          _c("h2", { staticClass: "subtitle" }, [_vm._v("Общий план дома")])
         ])
-      ]),
-      _vm._v(" "),
-      _c("konva"),
-      _vm._v(" "),
-      _c("section", { staticClass: "section" }, [
-        _c("div", { staticClass: "columns" }, [
-          _c("div", { staticClass: "column" }, [
-            _c(
-              "nav",
-              { staticClass: "panel" },
-              [
-                _c("p", { staticClass: "panel-heading" }, [_vm._v("Парадные")]),
-                _vm._v(" "),
-                _vm._l(_vm.house.doors, function(door) {
-                  return [
-                    _c(
-                      "a",
-                      { staticClass: "panel-block", attrs: { href: "" } },
-                      [_vm._v(_vm._s(door.number))]
-                    )
-                  ]
-                }),
-                _vm._v(" "),
-                _c(
-                  "div",
-                  { staticClass: "panel-block" },
-                  [
-                    _c(
-                      "router-link",
-                      {
-                        staticClass: "button is-link is-outlined is-fullwidth",
-                        attrs: {
-                          to: { name: "newdoor", params: { id: _vm.house.id } }
+      ])
+    ]),
+    _vm._v(" "),
+    _c("section", { staticClass: "section" }, [
+      _c("div", { staticClass: "columns" }, [
+        _c("div", { staticClass: "column" }, [
+          _c(
+            "nav",
+            { staticClass: "panel" },
+            [
+              _c("p", { staticClass: "panel-heading" }, [_vm._v("Парадные")]),
+              _vm._v(" "),
+              _vm._l(_vm.house.doors, function(door) {
+                return [
+                  _c(
+                    "router-link",
+                    {
+                      staticClass: "panel-block",
+                      attrs: {
+                        to: {
+                          name: "door_view",
+                          params: { door_number: door.number }
                         }
-                      },
-                      [_vm._v("добавить парадную")]
-                    )
-                  ],
-                  1
-                )
-              ],
-              2
-            )
-          ]),
-          _vm._v(" "),
-          _vm._m(0),
-          _vm._v(" "),
-          _vm._m(1)
+                      }
+                    },
+                    [_vm._v(_vm._s(door.number))]
+                  )
+                ]
+              }),
+              _vm._v(" "),
+              _c(
+                "div",
+                { staticClass: "panel-block" },
+                [
+                  _c(
+                    "router-link",
+                    {
+                      staticClass: "button is-link is-outlined is-fullwidth",
+                      attrs: {
+                        to: { name: "newdoor", params: { id: _vm.house.id } }
+                      }
+                    },
+                    [_vm._v("добавить парадную")]
+                  )
+                ],
+                1
+              )
+            ],
+            2
+          )
         ])
-      ]),
-      _vm._v(" "),
-      _c("router-view")
-    ],
-    1
-  )
+      ])
+    ])
+  ])
 }
-var staticRenderFns = [
-  function() {
-    var _vm = this
-    var _h = _vm.$createElement
-    var _c = _vm._self._c || _h
-    return _c("div", { staticClass: "column" }, [
-      _c("nav", { staticClass: "panel" }, [
-        _c("p", { staticClass: "panel-heading" }, [_vm._v("Этажи")]),
-        _vm._v(" "),
-        _c("a", { staticClass: "panel-block", attrs: { href: "" } }, [
-          _vm._v("3")
-        ]),
-        _vm._v(" "),
-        _c("a", { staticClass: "panel-block", attrs: { href: "" } }, [
-          _vm._v("3")
-        ]),
-        _vm._v(" "),
-        _c("div", { staticClass: "panel-block" }, [
-          _c(
-            "button",
-            {
-              staticClass: "button is-link is-outlined is-fullwidth is-loading"
-            },
-            [_vm._v("\n\t\t\t\t\t\t\t\tдобавить этаж\n\t\t\t\t\t\t\t")]
-          )
-        ])
-      ])
-    ])
-  },
-  function() {
-    var _vm = this
-    var _h = _vm.$createElement
-    var _c = _vm._self._c || _h
-    return _c("div", { staticClass: "column" }, [
-      _c("nav", { staticClass: "panel" }, [
-        _c("p", { staticClass: "panel-heading" }, [_vm._v("Квартиры")]),
-        _vm._v(" "),
-        _c("a", { staticClass: "panel-block", attrs: { href: "" } }, [
-          _vm._v("4")
-        ]),
-        _vm._v(" "),
-        _c("a", { staticClass: "panel-block", attrs: { href: "" } }, [
-          _vm._v("4")
-        ]),
-        _vm._v(" "),
-        _c("div", { staticClass: "panel-block" }, [
-          _c(
-            "button",
-            {
-              staticClass: "button is-link is-outlined is-fullwidth is-loading"
-            },
-            [_vm._v("\n\t\t\t\t\t\t\t\tдобавить квартиру\n\t\t\t\t\t\t\t")]
-          )
-        ])
-      ])
-    ])
-  }
-]
+var staticRenderFns = []
 render._withStripped = true
 
 
@@ -26097,16 +26135,22 @@ var render = function() {
   var _vm = this
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
-  return _c("div", [
-    _vm._v("\n\tHouse.vue\n\t"),
-    _c(
-      "ul",
-      _vm._l(_vm.houses, function(house) {
-        return _c("li", [_vm._v(_vm._s(house.name))])
-      }),
-      0
-    )
-  ])
+  return _c(
+    "div",
+    [
+      _vm._v("\n\tHouse.vue\n\t"),
+      _c(
+        "ul",
+        _vm._l(_vm.houses, function(house) {
+          return _c("li", [_vm._v(_vm._s(house.name))])
+        }),
+        0
+      ),
+      _vm._v(" "),
+      _c("router-view")
+    ],
+    1
+  )
 }
 var staticRenderFns = []
 render._withStripped = true
@@ -40999,6 +41043,12 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _config_js__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../config.js */ "./resources/js/config.js");
 
 /* harmony default export */ __webpack_exports__["default"] = ({
+  /*
+  	GET 	/api/v1/doors/{doorID}
+   */
+  getDoor: function getDoor(doorID) {
+    return axios.get(_config_js__WEBPACK_IMPORTED_MODULE_0__["APP_CONFIG"].API_URL + '/doors/' + doorID);
+  },
   postAddNewDoor: function postAddNewDoor(number, house_id) {
     var formData = new FormData();
     formData.append('number', number);
@@ -41557,7 +41607,9 @@ __webpack_require__.r(__webpack_exports__);
 
 var door = {
   state: {
-    doorAddStatus: 0
+    doorAddStatus: 0,
+    door: {},
+    doorLoadStatus: 0
   },
   actions: {
     addDoor: function addDoor(_ref, data) {
@@ -41570,9 +41622,30 @@ var door = {
       }).catch(function () {
         commit('setDoorAddedStatus', 3);
       });
+    },
+    // Загрузка этажа
+    loadDoor: function loadDoor(_ref2, data) {
+      var commit = _ref2.commit;
+      commit('setDoorLoadStatus', 1);
+      _api_door_js__WEBPACK_IMPORTED_MODULE_0__["default"].getDoor(data.id).then(function (response) {
+        commit('setDoor', response.data);
+        commit('setDoorLoadStatus', 2);
+      }).catch(function () {
+        commit('setDoor', {});
+        commit('setDoorLoadStatus', 3);
+      });
     }
   },
   mutations: {
+    // state - локальное состояние модуля
+    // status - данные, которые нужно обновить
+    setDoorLoadStatus: function setDoorLoadStatus(state, status) {
+      state.doorLoadStatus = status;
+    },
+    // устанавливает парадную
+    setDoor: function setDoor(state, door) {
+      state.door = door;
+    },
     setDoorAddedStatus: function setDoorAddedStatus(state, status) {
       state.doorAddStatus = status;
     },
@@ -41580,7 +41653,15 @@ var door = {
       return state.doorAddStatus;
     }
   },
-  getters: {}
+  getters: {
+    // возвращает парадную
+    getDoor: function getDoor(state) {
+      return state.door;
+    },
+    getDoorLoadStatus: function getDoorLoadStatus(state) {
+      return state.doorLoadStatus;
+    }
+  }
 };
 
 /***/ }),
@@ -41786,6 +41867,76 @@ __webpack_require__.r(__webpack_exports__);
 
 /***/ }),
 
+/***/ "./resources/js/pages/Door.view.vue":
+/*!******************************************!*\
+  !*** ./resources/js/pages/Door.view.vue ***!
+  \******************************************/
+/*! no static exports found */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _Door_view_vue_vue_type_template_id_a5ca69a8___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./Door.view.vue?vue&type=template&id=a5ca69a8& */ "./resources/js/pages/Door.view.vue?vue&type=template&id=a5ca69a8&");
+/* harmony import */ var _Door_view_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./Door.view.vue?vue&type=script&lang=js& */ "./resources/js/pages/Door.view.vue?vue&type=script&lang=js&");
+/* harmony reexport (unknown) */ for(var __WEBPACK_IMPORT_KEY__ in _Door_view_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__) if(__WEBPACK_IMPORT_KEY__ !== 'default') (function(key) { __webpack_require__.d(__webpack_exports__, key, function() { return _Door_view_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__[key]; }) }(__WEBPACK_IMPORT_KEY__));
+/* harmony import */ var _node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../../../node_modules/vue-loader/lib/runtime/componentNormalizer.js */ "./node_modules/vue-loader/lib/runtime/componentNormalizer.js");
+
+
+
+
+
+/* normalize component */
+
+var component = Object(_node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_2__["default"])(
+  _Door_view_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__["default"],
+  _Door_view_vue_vue_type_template_id_a5ca69a8___WEBPACK_IMPORTED_MODULE_0__["render"],
+  _Door_view_vue_vue_type_template_id_a5ca69a8___WEBPACK_IMPORTED_MODULE_0__["staticRenderFns"],
+  false,
+  null,
+  null,
+  null
+  
+)
+
+/* hot reload */
+if (false) { var api; }
+component.options.__file = "resources/js/pages/Door.view.vue"
+/* harmony default export */ __webpack_exports__["default"] = (component.exports);
+
+/***/ }),
+
+/***/ "./resources/js/pages/Door.view.vue?vue&type=script&lang=js&":
+/*!*******************************************************************!*\
+  !*** ./resources/js/pages/Door.view.vue?vue&type=script&lang=js& ***!
+  \*******************************************************************/
+/*! no static exports found */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _node_modules_babel_loader_lib_index_js_ref_4_0_node_modules_vue_loader_lib_index_js_vue_loader_options_Door_view_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../node_modules/babel-loader/lib??ref--4-0!../../../node_modules/vue-loader/lib??vue-loader-options!./Door.view.vue?vue&type=script&lang=js& */ "./node_modules/babel-loader/lib/index.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/pages/Door.view.vue?vue&type=script&lang=js&");
+/* empty/unused harmony star reexport */ /* harmony default export */ __webpack_exports__["default"] = (_node_modules_babel_loader_lib_index_js_ref_4_0_node_modules_vue_loader_lib_index_js_vue_loader_options_Door_view_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__["default"]); 
+
+/***/ }),
+
+/***/ "./resources/js/pages/Door.view.vue?vue&type=template&id=a5ca69a8&":
+/*!*************************************************************************!*\
+  !*** ./resources/js/pages/Door.view.vue?vue&type=template&id=a5ca69a8& ***!
+  \*************************************************************************/
+/*! exports provided: render, staticRenderFns */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_Door_view_vue_vue_type_template_id_a5ca69a8___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!../../../node_modules/vue-loader/lib??vue-loader-options!./Door.view.vue?vue&type=template&id=a5ca69a8& */ "./node_modules/vue-loader/lib/loaders/templateLoader.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/pages/Door.view.vue?vue&type=template&id=a5ca69a8&");
+/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "render", function() { return _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_Door_view_vue_vue_type_template_id_a5ca69a8___WEBPACK_IMPORTED_MODULE_0__["render"]; });
+
+/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "staticRenderFns", function() { return _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_Door_view_vue_vue_type_template_id_a5ca69a8___WEBPACK_IMPORTED_MODULE_0__["staticRenderFns"]; });
+
+
+
+/***/ }),
+
 /***/ "./resources/js/pages/Door.vue":
 /*!*************************************!*\
   !*** ./resources/js/pages/Door.vue ***!
@@ -41850,6 +42001,59 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "render", function() { return _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_Door_vue_vue_type_template_id_0ab947b7___WEBPACK_IMPORTED_MODULE_0__["render"]; });
 
 /* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "staticRenderFns", function() { return _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_Door_vue_vue_type_template_id_0ab947b7___WEBPACK_IMPORTED_MODULE_0__["staticRenderFns"]; });
+
+
+
+/***/ }),
+
+/***/ "./resources/js/pages/Floor.vue":
+/*!**************************************!*\
+  !*** ./resources/js/pages/Floor.vue ***!
+  \**************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _Floor_vue_vue_type_template_id_3bd40653___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./Floor.vue?vue&type=template&id=3bd40653& */ "./resources/js/pages/Floor.vue?vue&type=template&id=3bd40653&");
+/* harmony import */ var _node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../../../node_modules/vue-loader/lib/runtime/componentNormalizer.js */ "./node_modules/vue-loader/lib/runtime/componentNormalizer.js");
+
+var script = {}
+
+
+/* normalize component */
+
+var component = Object(_node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_1__["default"])(
+  script,
+  _Floor_vue_vue_type_template_id_3bd40653___WEBPACK_IMPORTED_MODULE_0__["render"],
+  _Floor_vue_vue_type_template_id_3bd40653___WEBPACK_IMPORTED_MODULE_0__["staticRenderFns"],
+  false,
+  null,
+  null,
+  null
+  
+)
+
+/* hot reload */
+if (false) { var api; }
+component.options.__file = "resources/js/pages/Floor.vue"
+/* harmony default export */ __webpack_exports__["default"] = (component.exports);
+
+/***/ }),
+
+/***/ "./resources/js/pages/Floor.vue?vue&type=template&id=3bd40653&":
+/*!*********************************************************************!*\
+  !*** ./resources/js/pages/Floor.vue?vue&type=template&id=3bd40653& ***!
+  \*********************************************************************/
+/*! exports provided: render, staticRenderFns */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_Floor_vue_vue_type_template_id_3bd40653___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!../../../node_modules/vue-loader/lib??vue-loader-options!./Floor.vue?vue&type=template&id=3bd40653& */ "./node_modules/vue-loader/lib/loaders/templateLoader.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/pages/Floor.vue?vue&type=template&id=3bd40653&");
+/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "render", function() { return _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_Floor_vue_vue_type_template_id_3bd40653___WEBPACK_IMPORTED_MODULE_0__["render"]; });
+
+/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "staticRenderFns", function() { return _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_Floor_vue_vue_type_template_id_3bd40653___WEBPACK_IMPORTED_MODULE_0__["staticRenderFns"]; });
 
 
 
@@ -42176,8 +42380,8 @@ vue__WEBPACK_IMPORTED_MODULE_0___default.a.use(vue_router__WEBPACK_IMPORTED_MODU
       component: vue__WEBPACK_IMPORTED_MODULE_0___default.a.component('NewHouse', __webpack_require__(/*! ./pages/House.new.vue */ "./resources/js/pages/House.new.vue").default)
     }, {
       path: '/houses/:id',
-      name: 'house_view',
-      component: vue__WEBPACK_IMPORTED_MODULE_0___default.a.component('ViewHouse', __webpack_require__(/*! ./pages/House.view.vue */ "./resources/js/pages/House.view.vue").default),
+      name: 'house_view2',
+      component: vue__WEBPACK_IMPORTED_MODULE_0___default.a.component('House', __webpack_require__(/*! ./pages/House.vue */ "./resources/js/pages/House.vue").default),
       props: function props(route) {
         var id = Number.parseInt(route.params.id, 10);
 
@@ -42190,6 +42394,10 @@ vue__WEBPACK_IMPORTED_MODULE_0___default.a.use(vue_router__WEBPACK_IMPORTED_MODU
         };
       },
       children: [{
+        path: '/',
+        name: 'house_view',
+        component: vue__WEBPACK_IMPORTED_MODULE_0___default.a.component('ViewHouse', __webpack_require__(/*! ./pages/House.view.vue */ "./resources/js/pages/House.view.vue").default)
+      }, {
         path: 'doors',
         name: 'house_doors',
         component: vue__WEBPACK_IMPORTED_MODULE_0___default.a.component('Doors', __webpack_require__(/*! ./pages/Door.vue */ "./resources/js/pages/Door.vue").default)
@@ -42197,6 +42405,15 @@ vue__WEBPACK_IMPORTED_MODULE_0___default.a.use(vue_router__WEBPACK_IMPORTED_MODU
         path: 'doors/new',
         name: 'newdoor',
         component: vue__WEBPACK_IMPORTED_MODULE_0___default.a.component('NewDoor', __webpack_require__(/*! ./pages/Door.new.vue */ "./resources/js/pages/Door.new.vue").default)
+      }, {
+        path: 'doors/view/:door_number',
+        name: 'door_view',
+        component: vue__WEBPACK_IMPORTED_MODULE_0___default.a.component('ViewDoor', __webpack_require__(/*! ./pages/Door.view.vue */ "./resources/js/pages/Door.view.vue").default),
+        children: [{
+          path: 'floors',
+          name: 'door_floors',
+          component: vue__WEBPACK_IMPORTED_MODULE_0___default.a.component('Floors', __webpack_require__(/*! ./pages/Floor.vue */ "./resources/js/pages/Floor.vue").default)
+        }]
       }]
     }]
   }]

@@ -10,7 +10,7 @@
 		</section>
 		
 		<!-- ToDo: add Konva -->
-		<konva></konva>
+		<!-- <konva></konva> -->
 
 		<section class="section">
 			<div class="columns">
@@ -19,7 +19,7 @@
 					<nav class="panel">
 						<p class="panel-heading">Парадные</p>
 						<template v-for="door in house.doors">
-							<a href="" class="panel-block">{{ door.number }}</a>
+							<router-link class="panel-block" v-bind:to="{name: 'door_view', params: {door_number: door.number}}">{{ door.number }}</router-link>
 						</template>
 						
 						<div class="panel-block">
@@ -27,6 +27,7 @@
 						</div>
 					</nav>
 				</div>
+			<!--
   				<div class="column">
 					<nav class="panel">
 						<p class="panel-heading">Этажи</p>
@@ -51,9 +52,9 @@
 						</div>
 					</nav>
 				</div>
+			-->
 			</div>
 		</section>
-		<router-view></router-view>
 	</div>
 </template>
 

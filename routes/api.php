@@ -18,10 +18,15 @@ Route::group(['prefix' => 'v1', 'middleware' => 'auth:api'], function(){
 	});
 
 	// Дома
-	Route::get('/houses', 'Api\HouseController@index');
-	Route::get('/houses/{house}', 'Api\HouseController@show');
-	Route::post('/houses', 'Api\HouseController@store');
+	Route::get('/houses', 			'Api\HouseController@index');
+	Route::get('/houses/{house}', 	'Api\HouseController@show');
+	Route::post('/houses', 			'Api\HouseController@store');
 
 	// Парадные
-	Route::post('/doors', 'Api\DoorController@store');
+	Route::get('/doors/{door}', 	'Api\DoorController@show');
+	Route::post('/doors', 			'Api\DoorController@store');
+
+	// Этажи
+	Route::get('/floors/{floor}', 	'Api\FloorController@show');
+	Route::post('/floors', 			'Api\FloorController@store');
 });
