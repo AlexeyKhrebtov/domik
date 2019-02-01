@@ -3,7 +3,7 @@
     	<div class="container">
 
     		<div class="navbar-brand">
-    			<router-link :to="{ name: 'home'}" class="navbar-item">
+    			<router-link :to="{ name: 'main'}" class="navbar-item">
 					DOMIK
 				</router-link>
 
@@ -16,9 +16,11 @@
 
 			<div class="navbar-menu" :class="{'is-active': isActiveBurgerMenu}">	
 				<div class="navbar-end">
-					<router-link class="navbar-item" :to="{ name: 'home' }">Home</router-link>
-					<router-link class="navbar-item" :to="{ name: 'houses' }">Список домов</router-link>
+					<router-link class="navbar-item" :to="{ name: 'main' }">Главная</router-link>
+					<router-link class="navbar-item" :to="{ name: 'houses' }">Список объектов</router-link>
+				<!--
 					<router-link class="navbar-item" :to="{ name: 'newhouse' }">Добавить дом</router-link>
+				-->
 				</div>				
 			</div>
 		</div>

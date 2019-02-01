@@ -13,4 +13,13 @@ class Floor extends Model
     public function door() {
     	return $this->belongsTo('App\Door');
     }
+
+
+    /**
+     * Получить список квартир на этаже
+     * @return [type] [description]
+     */
+    public function rooms() {
+    	return $this->hasMany('App\Room');
+    }
 }

@@ -2,11 +2,11 @@
 
 namespace App\Http\Controllers\Api;
 
-use App\Floor;
+use App\Room;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 
-class FloorController extends Controller
+class RoomController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -26,33 +26,35 @@ class FloorController extends Controller
      */
     public function store(Request $request)
     {
-        $floor = new Floor();
-        $floor->number = $request->number;
-        $floor->door_id = $request->door_id;
-        $floor->save();
+        
+        $room = new Room();
+        $room->number = $request->number;
+        $room->floor_id = $request->floor_id;
+        $room->save();
 
-        return response()->json($floor, 201);
+        return response()->json($room, 201);
+        
     }
 
     /**
      * Display the specified resource.
      *
-     * @param  \App\Floor  $floor
+     * @param  \App\Room  $room
      * @return \Illuminate\Http\Response
      */
-    public function show(Floor $floor)
+    public function show(Room $room)
     {
-        return response()->json($floor->load('rooms'));
+        return response()->json($room);
     }
 
     /**
      * Update the specified resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Floor  $floor
+     * @param  \App\Room  $room
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Floor $floor)
+    public function update(Request $request, Room $room)
     {
         //
     }
@@ -60,10 +62,10 @@ class FloorController extends Controller
     /**
      * Remove the specified resource from storage.
      *
-     * @param  \App\Floor  $floor
+     * @param  \App\Room  $room
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Floor $floor)
+    public function destroy(Room $room)
     {
         //
     }

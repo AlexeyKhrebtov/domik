@@ -22,7 +22,8 @@ export const door = {
 			DoorAPI.postAddNewDoor( data.number, data.house_id )
 				.then( function( response ){
 					commit( 'setDoorAddedStatus', 2 );
-					//dispatch( 'loadDoors' );
+					console.log(1);
+					dispatch( 'loadHouse', {id: data.house_id, root:true} );
 				})
 				.catch( function(){
 					commit( 'setDoorAddedStatus', 3 );

@@ -1,7 +1,5 @@
 <template>
-	<div>
-		<h1 class="title">Door.new.vue</h1>
-
+	<div class="box">
 		<form action="">
 			<label class="label" for="">Номер парадной</label>
 			<div class="field has-addons">				
@@ -41,10 +39,13 @@
     	methods: {
 			submitNewDoor(){
 				if (this.validateNewDoor()) {
+					let number = this.number;
 					this.$store.dispatch( 'addDoor', {
 						number: this.number,
 						house_id: 1
 					});
+					// сбросим значение в форме
+					this.number = '';
 				}				
 			},
 

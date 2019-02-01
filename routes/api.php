@@ -29,4 +29,8 @@ Route::group(['prefix' => 'v1', 'middleware' => 'auth:api'], function(){
 	// Этажи
 	Route::get('/floors/{floor}', 	'Api\FloorController@show');
 	Route::post('/floors', 			'Api\FloorController@store');
+
+	// Квартиры
+	Route::get('/rooms/{room}',		'Api\RoomController@show');
+	Route::post('/rooms', 			'Api\RoomController@store');
 });

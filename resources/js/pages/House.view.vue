@@ -4,7 +4,7 @@
 			<div class="hero-body">
 				<div class="container">
 					<h1 class="title">{{ house.name }}</h1>
-					<h2 class="subtitle">Общий план дома</h2>
+					<h2 class="subtitle">Список парадных</h2>
 				</div>
 			</div>
 		</section>
@@ -21,49 +21,28 @@
 						<template v-for="door in house.doors">
 							<router-link class="panel-block" v-bind:to="{name: 'door_view', params: {door_number: door.number}}">{{ door.number }}</router-link>
 						</template>
-						
+					<!--
 						<div class="panel-block">
 							<router-link class="button is-link is-outlined is-fullwidth" v-bind:to="{ name: 'newdoor', params: {id: house.id} }">добавить парадную</router-link>
 						</div>
+					-->
 					</nav>
 				</div>
-			<!--
-  				<div class="column">
-					<nav class="panel">
-						<p class="panel-heading">Этажи</p>
-						<a href="" class="panel-block">3</a>
-						<a href="" class="panel-block">3</a>
-						<div class="panel-block">
-							<button class="button is-link is-outlined is-fullwidth is-loading">
-								добавить этаж
-							</button>
-						</div>
-					</nav>
+				<div class="column">
+					<door-new></door-new>
 				</div>
-  				<div class="column">
-					<nav class="panel">
-						<p class="panel-heading">Квартиры</p>
-						<a href="" class="panel-block">4</a>
-						<a href="" class="panel-block">4</a>
-						<div class="panel-block">
-							<button class="button is-link is-outlined is-fullwidth is-loading">
-								добавить квартиру
-							</button>
-						</div>
-					</nav>
-				</div>
-			-->
 			</div>
 		</section>
 	</div>
 </template>
 
 <script>
+	//import konva from '../components/Konva.vue';
 	import konva from '../components/Konva.vue';
 
 	export default {
 		components: {
-			konva
+			'door-new': require('./Door.new.vue').default
 		},
 
 		created(){

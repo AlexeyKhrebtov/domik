@@ -1,7 +1,5 @@
 <template>
-	<div>
-		<h1 class="title">House.new.vue</h1>
-
+	<div class="box">
 		<form action="">
 			<div class="field">				
 				<label class="label" for="">Название объекта</label>
@@ -15,6 +13,7 @@
 			</div>
 			<a class="button" v-on:click="submitNewHouse()">Добавить объект</a>
 		</form>
+		<p><code>ToDo: валидация, состояние отправки, обработка ошибок.</code></p>
 	</div>
 </template>
 
@@ -35,11 +34,13 @@
     	},
 
     	methods: {
-			submitNewHouse(){
+			submitNewHouse(event){
 				if (this.validateNewHouse()) {
+					let name = this.name;
 					this.$store.dispatch( 'addHouse', {
-						name: this.name
+						name: name
 					});
+					this.name = '';
 				}				
 			},
 

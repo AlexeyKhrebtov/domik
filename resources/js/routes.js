@@ -19,12 +19,12 @@ export default new VueRouter({
 			path: '/',
 			name: 'layout',
 			component: Vue.component( 'Layout',  require( './layouts/Layout.vue' ).default ),
-			children: [		
+			children: [	
 				{
-					path: '/home',
-					name: 'home',
-					component: Vue.component( 'Home', require( './pages/Home.vue' ).default )
-				},				
+					path: '',
+					name: 'main',
+					component: Vue.component( 'Main', require( './pages/Main.vue' ).default )
+				},							
 				{
 					path: '/houses',
 					name: 'houses',
@@ -32,52 +32,27 @@ export default new VueRouter({
 				},
 				
 				{
-					path: '/houses/new',
-					name: 'newhouse',
-					component: Vue.component( 'NewHouse', require( './pages/House.new.vue' ).default )
-				},
-				
-				{
 					path: '/houses/:id',
-					name: 'house_view2',
-					component: Vue.component( 'House', require( './pages/House.vue' ).default ),
+					name: 'house_view',
+					component: Vue.component( 'House', require( './pages/House.view.vue' ).default ),
 					props: (route) => {
 						const id = Number.parseInt(route.params.id, 10);
 						if (Number.isNaN(id)) {
 							return 0
 						}
 							return { id }
-					},
-					children: [
-						{
-							path: '/',
-							name: 'house_view',
-							component: Vue.component( 'ViewHouse', require( './pages/House.view.vue' ).default )
-						},
-						{
-							path: 'doors',
-							name: 'house_doors',
-							component: Vue.component( 'Doors', require( './pages/Door.vue' ).default )
-						},
-						{
-							path: 'doors/new',
-							name: 'newdoor',
-							component: Vue.component( 'NewDoor', require( './pages/Door.new.vue' ).default )
-						},
-						{
-							path: 'doors/view/:door_number',
-							name: 'door_view',
-							component: Vue.component( 'ViewDoor', require( './pages/Door.view.vue' ).default ),
-							children: [
-								{
-									path: 'floors',
-									name: 'door_floors',
-									component: Vue.component( 'Floors', require( './pages/Floor.vue' ).default )
-								}
-							]
-						}
-					]
+					}
 				},
+				{
+					path: '/houses/:id/doors/:door_id',
+					name: 'door_view',
+					component: Vue.component( 'ViewDoor', require( './pages/Door.view.vue' ).default )
+				},
+				{
+					path: '/houses/:id/doors/:door_id/floors/:floor_id',
+					name: 'floor_view',
+					component: Vue.component( 'ViewFloor', require( './pages/Floor.view.vue' ).default )
+				}
 			]
 		}	
 
