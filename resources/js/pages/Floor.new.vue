@@ -25,6 +25,10 @@
 				}
 			}
 		},
+		
+		props: {
+			door_id: Number
+		},
 
 		methods: {
 			// Отправка формы
@@ -33,13 +37,13 @@
 					let number = this.number;
 					this.$store.dispatch( 'addFloor', {
 						number: this.number,
-						door_id: 1
+						door_id: this.door_id
 					});
 					// сбросим значение в форме
 					this.number = '';
 				}	
 			},
-			
+
 			// Проверка валидации формы
 			validateNewFloor() {
 				// ToDo

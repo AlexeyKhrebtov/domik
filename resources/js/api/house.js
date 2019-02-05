@@ -13,6 +13,10 @@ export default {
 	getHouse: function( houseID ){
 		return axios.get( APP_CONFIG.API_URL + '/houses/' + houseID );
 	},
+
+	getHouseFull: function( houseID ){
+		return axios.get( APP_CONFIG.API_URL + '/houses/' + houseID + '/full' );
+	},
 	/*
 		POST 	/api/v1/houses
 	 */

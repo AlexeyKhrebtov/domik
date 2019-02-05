@@ -36,13 +36,18 @@
     		}
     	},
 
+    	props: {
+    		house_id: Number
+		},
+
     	methods: {
 			submitNewDoor(){
+				console.log(this.house_id);
 				if (this.validateNewDoor()) {
 					let number = this.number;
 					this.$store.dispatch( 'addDoor', {
 						number: this.number,
-						house_id: 1
+						house_id: this.house_id
 					});
 					// сбросим значение в форме
 					this.number = '';

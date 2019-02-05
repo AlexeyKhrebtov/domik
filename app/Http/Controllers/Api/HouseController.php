@@ -69,4 +69,15 @@ class HouseController extends Controller
     {
         //
     }
+
+
+    /**
+     * Получить самую полную информацию о доме со всеми вложенными данными
+     * @param  \App\House  $house
+     * @return \Illuminate\Http\Response
+     */
+    public function full(House $house) 
+    {
+        return response()->json( $house->load('doors') );
+    }
 }

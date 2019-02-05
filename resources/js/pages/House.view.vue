@@ -1,5 +1,6 @@
 <template>
 	<div>
+		<!-- resources\js\pages\House.view.vue -->
 		<section class="hero">
 			<div class="hero-body">
 				<div class="container">
@@ -19,7 +20,7 @@
 					<nav class="panel">
 						<p class="panel-heading">Парадные</p>
 						<template v-for="door in house.doors">
-							<router-link class="panel-block" v-bind:to="{name: 'door_view', params: {door_number: door.number}}">{{ door.number }}</router-link>
+							<router-link class="panel-block" v-bind:to="{name: 'door_view', params: {door_id: door.id}}">{{ door.number }}</router-link>
 						</template>
 					<!--
 						<div class="panel-block">
@@ -29,7 +30,7 @@
 					</nav>
 				</div>
 				<div class="column">
-					<door-new></door-new>
+					<door-new :house_id=house.id></door-new>
 				</div>
 			</div>
 		</section>
@@ -38,7 +39,7 @@
 
 <script>
 	//import konva from '../components/Konva.vue';
-	import konva from '../components/Konva.vue';
+	//import konva from '../components/Konva.vue';
 
 	export default {
 		components: {

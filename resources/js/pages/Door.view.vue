@@ -15,12 +15,12 @@
 					<nav class="panel">
 						<p class="panel-heading">Этажи</p>
 						<template v-for="floor in door.floors">
-							<router-link class="panel-block" v-bind:to="{name: 'floor_view', params: {floor_id: floor.id, door_id: 1}}">{{ floor.number }} этаж</router-link>
+							<router-link class="panel-block" v-bind:to="{name: 'floor_view', params: {floor_id: floor.id, door_id: door.id}}">{{ floor.number }} этаж</router-link>
 						</template>
 					</nav>
 				</div>
 				<div class="column">
-					<floor-new></floor-new>
+					<floor-new :door_id=door.id></floor-new>
 				</div>
 			</div>
 		</section>
@@ -32,7 +32,7 @@
 	export default {
 		created() {
 			this.$store.dispatch( 'loadDoor', {
-				id: this.$route.params.id
+				id: this.$route.params.door_id
 			})
 		},
 

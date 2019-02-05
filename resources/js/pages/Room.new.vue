@@ -21,12 +21,16 @@
 			}
 		},
 
+		props: {
+			floor_id: Number
+		},
+
 		methods: {
 			submitNewRoom() {
 				let number = this.number;
 				this.$store.dispatch( 'addRoom', {
 					number: this.number,
-					floor_id: 1
+					floor_id: this.floor_id
 				});
 				// сбросим значение в форме
 				this.number = '';

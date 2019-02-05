@@ -2031,13 +2031,18 @@ __webpack_require__.r(__webpack_exports__);
       }
     };
   },
+  props: {
+    house_id: Number
+  },
   methods: {
     submitNewDoor: function submitNewDoor() {
+      console.log(this.house_id);
+
       if (this.validateNewDoor()) {
         var number = this.number;
         this.$store.dispatch('addDoor', {
           number: this.number,
-          house_id: 1
+          house_id: this.house_id
         }); // сбросим значение в форме
 
         this.number = '';
@@ -2109,7 +2114,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony default export */ __webpack_exports__["default"] = ({
   created: function created() {
     this.$store.dispatch('loadDoor', {
-      id: this.$route.params.id
+      id: this.$route.params.door_id
     });
   },
   components: {
@@ -2157,6 +2162,9 @@ __webpack_require__.r(__webpack_exports__);
       }
     };
   },
+  props: {
+    door_id: Number
+  },
   methods: {
     // Отправка формы
     submitNewFloor: function submitNewFloor() {
@@ -2164,7 +2172,7 @@ __webpack_require__.r(__webpack_exports__);
         var number = this.number;
         this.$store.dispatch('addFloor', {
           number: this.number,
-          door_id: 1
+          door_id: this.door_id
         }); // сбросим значение в форме
 
         this.number = '';
@@ -2237,6 +2245,41 @@ __webpack_require__.r(__webpack_exports__);
   computed: {
     floor: function floor() {
       return this.$store.getters.getFloor;
+    }
+  }
+});
+
+/***/ }),
+
+/***/ "./node_modules/babel-loader/lib/index.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/pages/House.full.vue?vue&type=script&lang=js&":
+/*!****************************************************************************************************************************************************************!*\
+  !*** ./node_modules/babel-loader/lib??ref--4-0!./node_modules/vue-loader/lib??vue-loader-options!./resources/js/pages/House.full.vue?vue&type=script&lang=js& ***!
+  \****************************************************************************************************************************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _components_Konva_vue__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../components/Konva.vue */ "./resources/js/components/Konva.vue");
+//
+//
+//
+//
+//
+//
+//import konva from '../components/Konva.vue';
+
+/* harmony default export */ __webpack_exports__["default"] = ({
+  components: {//'door-new': require('./Door.new.vue').default
+  },
+  created: function created() {
+    this.$store.dispatch('loadHouseFull', {
+      id: this.$route.params.id
+    });
+  },
+  computed: {
+    houseFull: function houseFull() {
+      return this.$store.getters.getHouseFull;
     }
   }
 });
@@ -2317,7 +2360,7 @@ __webpack_require__.r(__webpack_exports__);
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
-/* harmony import */ var _components_Konva_vue__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../components/Konva.vue */ "./resources/js/components/Konva.vue");
+//
 //
 //
 //
@@ -2357,7 +2400,7 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //import konva from '../components/Konva.vue';
-
+//import konva from '../components/Konva.vue';
 /* harmony default export */ __webpack_exports__["default"] = ({
   components: {
     'door-new': __webpack_require__(/*! ./Door.new.vue */ "./resources/js/pages/Door.new.vue").default
@@ -2471,12 +2514,15 @@ __webpack_require__.r(__webpack_exports__);
       number: ''
     };
   },
+  props: {
+    floor_id: Number
+  },
   methods: {
     submitNewRoom: function submitNewRoom() {
       var number = this.number;
       this.$store.dispatch('addRoom', {
         number: this.number,
-        floor_id: 1
+        floor_id: this.floor_id
       }); // сбросим значение в форме
 
       this.number = '';
@@ -25839,7 +25885,7 @@ var render = function() {
                       attrs: {
                         to: {
                           name: "floor_view",
-                          params: { floor_id: floor.id, door_id: 1 }
+                          params: { floor_id: floor.id, door_id: _vm.door.id }
                         }
                       }
                     },
@@ -25852,7 +25898,12 @@ var render = function() {
           )
         ]),
         _vm._v(" "),
-        _c("div", { staticClass: "column" }, [_c("floor-new")], 1)
+        _c(
+          "div",
+          { staticClass: "column" },
+          [_c("floor-new", { attrs: { door_id: _vm.door.id } })],
+          1
+        )
       ])
     ])
   ])
@@ -25999,10 +26050,39 @@ var render = function() {
           )
         ]),
         _vm._v(" "),
-        _c("div", { staticClass: "column" }, [_c("room-new")], 1)
+        _c(
+          "div",
+          { staticClass: "column" },
+          [_c("room-new", { attrs: { floor_id: _vm.floor.id } })],
+          1
+        )
       ])
     ])
   ])
+}
+var staticRenderFns = []
+render._withStripped = true
+
+
+
+/***/ }),
+
+/***/ "./node_modules/vue-loader/lib/loaders/templateLoader.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/pages/House.full.vue?vue&type=template&id=10904466&":
+/*!********************************************************************************************************************************************************************************************************!*\
+  !*** ./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/vue-loader/lib??vue-loader-options!./resources/js/pages/House.full.vue?vue&type=template&id=10904466& ***!
+  \********************************************************************************************************************************************************************************************************/
+/*! exports provided: render, staticRenderFns */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "render", function() { return render; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "staticRenderFns", function() { return staticRenderFns; });
+var render = function() {
+  var _vm = this
+  var _h = _vm.$createElement
+  var _c = _vm._self._c || _h
+  return _c("div", [_vm._v("\n\thouse full\n")])
 }
 var staticRenderFns = []
 render._withStripped = true
@@ -26175,10 +26255,7 @@ var render = function() {
                     {
                       staticClass: "panel-block",
                       attrs: {
-                        to: {
-                          name: "door_view",
-                          params: { door_number: door.number }
-                        }
+                        to: { name: "door_view", params: { door_id: door.id } }
                       }
                     },
                     [_vm._v(_vm._s(door.number))]
@@ -26190,7 +26267,12 @@ var render = function() {
           )
         ]),
         _vm._v(" "),
-        _c("div", { staticClass: "column" }, [_c("door-new")], 1)
+        _c(
+          "div",
+          { staticClass: "column" },
+          [_c("door-new", { attrs: { house_id: _vm.house.id } })],
+          1
+        )
       ])
     ])
   ])
@@ -41394,6 +41476,9 @@ __webpack_require__.r(__webpack_exports__);
   getHouse: function getHouse(houseID) {
     return axios.get(_config_js__WEBPACK_IMPORTED_MODULE_0__["APP_CONFIG"].API_URL + '/houses/' + houseID);
   },
+  getHouseFull: function getHouseFull(houseID) {
+    return axios.get(_config_js__WEBPACK_IMPORTED_MODULE_0__["APP_CONFIG"].API_URL + '/houses/' + houseID + '/full');
+  },
 
   /*
   	POST 	/api/v1/houses
@@ -42120,6 +42205,7 @@ var house = {
     housesLoadStatus: 0,
     house: {},
     houseLoadStatus: 0,
+    houseFull: {},
     houseAddStatus: 0
   },
 
@@ -42152,11 +42238,19 @@ var house = {
         commit('setHouseLoadStatus', 3);
       });
     },
+    loadHouseFull: function loadHouseFull(_ref3, data) {
+      var commit = _ref3.commit;
+      _api_house_js__WEBPACK_IMPORTED_MODULE_0__["default"].getHouseFull(data.id).then(function (response) {
+        commit('setHouseFull', response.data);
+      }).catch(function () {
+        commit('setHouseFull', []);
+      });
+    },
     // добавить новый дом
-    addHouse: function addHouse(_ref3, data) {
-      var commit = _ref3.commit,
-          state = _ref3.state,
-          dispatch = _ref3.dispatch;
+    addHouse: function addHouse(_ref4, data) {
+      var commit = _ref4.commit,
+          state = _ref4.state,
+          dispatch = _ref4.dispatch;
       commit('setHouseAddedStatus', 1);
       _api_house_js__WEBPACK_IMPORTED_MODULE_0__["default"].postAddNewHouse(data.name).then(function (response) {
         commit('setHouseAddedStatus', 2);
@@ -42186,6 +42280,9 @@ var house = {
     // устанавливает дом
     setHouse: function setHouse(state, house) {
       state.house = house;
+    },
+    setHouseFull: function setHouseFull(state, house_full) {
+      state.houseFull = house_full;
     },
     setHouseAddedStatus: function setHouseAddedStatus(state, status) {
       state.houseAddStatus = status;
@@ -42585,6 +42682,75 @@ __webpack_require__.r(__webpack_exports__);
 
 /***/ }),
 
+/***/ "./resources/js/pages/House.full.vue":
+/*!*******************************************!*\
+  !*** ./resources/js/pages/House.full.vue ***!
+  \*******************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _House_full_vue_vue_type_template_id_10904466___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./House.full.vue?vue&type=template&id=10904466& */ "./resources/js/pages/House.full.vue?vue&type=template&id=10904466&");
+/* harmony import */ var _House_full_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./House.full.vue?vue&type=script&lang=js& */ "./resources/js/pages/House.full.vue?vue&type=script&lang=js&");
+/* empty/unused harmony star reexport *//* harmony import */ var _node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../../../node_modules/vue-loader/lib/runtime/componentNormalizer.js */ "./node_modules/vue-loader/lib/runtime/componentNormalizer.js");
+
+
+
+
+
+/* normalize component */
+
+var component = Object(_node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_2__["default"])(
+  _House_full_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__["default"],
+  _House_full_vue_vue_type_template_id_10904466___WEBPACK_IMPORTED_MODULE_0__["render"],
+  _House_full_vue_vue_type_template_id_10904466___WEBPACK_IMPORTED_MODULE_0__["staticRenderFns"],
+  false,
+  null,
+  null,
+  null
+  
+)
+
+/* hot reload */
+if (false) { var api; }
+component.options.__file = "resources/js/pages/House.full.vue"
+/* harmony default export */ __webpack_exports__["default"] = (component.exports);
+
+/***/ }),
+
+/***/ "./resources/js/pages/House.full.vue?vue&type=script&lang=js&":
+/*!********************************************************************!*\
+  !*** ./resources/js/pages/House.full.vue?vue&type=script&lang=js& ***!
+  \********************************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _node_modules_babel_loader_lib_index_js_ref_4_0_node_modules_vue_loader_lib_index_js_vue_loader_options_House_full_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../node_modules/babel-loader/lib??ref--4-0!../../../node_modules/vue-loader/lib??vue-loader-options!./House.full.vue?vue&type=script&lang=js& */ "./node_modules/babel-loader/lib/index.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/pages/House.full.vue?vue&type=script&lang=js&");
+/* empty/unused harmony star reexport */ /* harmony default export */ __webpack_exports__["default"] = (_node_modules_babel_loader_lib_index_js_ref_4_0_node_modules_vue_loader_lib_index_js_vue_loader_options_House_full_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__["default"]); 
+
+/***/ }),
+
+/***/ "./resources/js/pages/House.full.vue?vue&type=template&id=10904466&":
+/*!**************************************************************************!*\
+  !*** ./resources/js/pages/House.full.vue?vue&type=template&id=10904466& ***!
+  \**************************************************************************/
+/*! exports provided: render, staticRenderFns */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_House_full_vue_vue_type_template_id_10904466___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!../../../node_modules/vue-loader/lib??vue-loader-options!./House.full.vue?vue&type=template&id=10904466& */ "./node_modules/vue-loader/lib/loaders/templateLoader.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/pages/House.full.vue?vue&type=template&id=10904466&");
+/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "render", function() { return _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_House_full_vue_vue_type_template_id_10904466___WEBPACK_IMPORTED_MODULE_0__["render"]; });
+
+/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "staticRenderFns", function() { return _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_House_full_vue_vue_type_template_id_10904466___WEBPACK_IMPORTED_MODULE_0__["staticRenderFns"]; });
+
+
+
+/***/ }),
+
 /***/ "./resources/js/pages/House.new.vue":
 /*!******************************************!*\
   !*** ./resources/js/pages/House.new.vue ***!
@@ -42957,6 +43123,21 @@ vue__WEBPACK_IMPORTED_MODULE_0___default.a.use(vue_router__WEBPACK_IMPORTED_MODU
       path: '/houses/:id',
       name: 'house_view',
       component: vue__WEBPACK_IMPORTED_MODULE_0___default.a.component('House', __webpack_require__(/*! ./pages/House.view.vue */ "./resources/js/pages/House.view.vue").default),
+      props: function props(route) {
+        var id = Number.parseInt(route.params.id, 10);
+
+        if (Number.isNaN(id)) {
+          return 0;
+        }
+
+        return {
+          id: id
+        };
+      }
+    }, {
+      path: '/houses/:id/full',
+      name: 'house_full',
+      component: vue__WEBPACK_IMPORTED_MODULE_0___default.a.component('HouseFull', __webpack_require__(/*! ./pages/House.full.vue */ "./resources/js/pages/House.full.vue").default),
       props: function props(route) {
         var id = Number.parseInt(route.params.id, 10);
 

@@ -22,7 +22,7 @@
 					</nav>
 				</div>
 				<div class="column">
-					<room-new></room-new>
+					<room-new :floor_id=floor.id></room-new>
 				</div>
 			</div>
 		</section>

@@ -21,6 +21,8 @@ Route::group(['prefix' => 'v1', 'middleware' => 'auth:api'], function(){
 	Route::get('/houses', 			'Api\HouseController@index');
 	Route::get('/houses/{house}', 	'Api\HouseController@show');
 	Route::post('/houses', 			'Api\HouseController@store');
+	// Получить самую полную информацию о доме со всеми вложенными данными
+	Route::get('/houses/{house}/full', 	'Api\HouseController@full');
 
 	// Парадные
 	Route::get('/doors/{door}', 	'Api\DoorController@show');

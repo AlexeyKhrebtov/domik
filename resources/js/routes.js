@@ -44,6 +44,18 @@ export default new VueRouter({
 					}
 				},
 				{
+					path: '/houses/:id/full',
+					name: 'house_full',
+					component: Vue.component( 'HouseFull', require( './pages/House.full.vue' ).default ),
+					props: (route) => {
+						const id = Number.parseInt(route.params.id, 10);
+						if (Number.isNaN(id)) {
+							return 0
+						}
+							return { id }
+					}
+				},
+				{
 					path: '/houses/:id/doors/:door_id',
 					name: 'door_view',
 					component: Vue.component( 'ViewDoor', require( './pages/Door.view.vue' ).default )
