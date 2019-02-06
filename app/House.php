@@ -13,4 +13,5 @@ class House extends Model
     public function doors() {
     	return $this->hasMany('App\Door');
     }
+
 }

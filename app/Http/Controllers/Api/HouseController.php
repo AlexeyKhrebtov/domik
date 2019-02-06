@@ -78,6 +78,6 @@ class HouseController extends Controller
      */
     public function full(House $house) 
     {
-        return response()->json( $house->load('doors') );
+        return response()->json( $house->load('doors.floors.rooms') );
     }
 }
