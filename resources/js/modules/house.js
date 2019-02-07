@@ -128,6 +128,11 @@ export const house = {
 	      return state.houses;
 	    },
 
+	    // возвращает полный дом
+	    getHouseFull( state ){
+	    	return state.houseFull;
+	    },
+
 	    getHouseLoadStatus( state ){
 	      return state.houseLoadStatus;
 	    },
