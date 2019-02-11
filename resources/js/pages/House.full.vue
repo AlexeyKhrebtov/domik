@@ -154,21 +154,22 @@
     		// Рисуем этаж
     		drawFloor(f, i, door_id)	{
     			let door = this.stage.findOne('.di'+door_id),
-    				door_attrs = door.getAttrs();
+    				door_attrs = door.getAttrs(),
+    				floor_door_id = 'fdi'+door_id; // привязка этажа к парадной
 				
-				var coords = this.calcFloorCoords(door_attrs);
+				var coords = this.calcFloorCoords(floor_door_id, door_attrs);
 
 				var layer = new Konva.Layer ();
 				var floor_rect = new Konva.Rect({
 					x: coords.x,
 					y: coords.y,
-					width: f.rooms.length*30,
+					width: f.rooms.length*30 || 10,
 					height: 20,
 					opacity: 0.5,
 					fill: 'blue',
 					stroke: 'black',
 					strokeWidth: 2,
-					name: 'floor fi'+i,
+					name: 'floor fi' + i + ' ' + floor_door_id,
 					CF_DATA : {
 						name: 'fl'
 					}
@@ -177,14 +178,23 @@
 				this.stage.add(layer);
     		},
 
-    		calcFloorCoords(door_attrs) {
-    			let coords = {x:50, y:50},
-    				added_floors = this.stage.find('.floor');
-console.log(added_floors)
+    		calcFloorCoords(floor_door_id, door_attrs) {
+
+    			let floor_height = 20, // px
+    				coords = {x: door_attrs.x, y: 50}, // x - как у парадной
+    				added_floors = this.stage.find('.'+floor_door_id);
+
 				if (added_floors.length) {
-					coords.y = 50 + added_floors.length*30;
+					// если есть добавленные этажи
+					coords.y = door_attrs.y + door_attrs.height - floor_height*(added_floors.length+1);
+				}
+				else {
+					// Если это первый этаж
+					coords.y = door_attrs.y + door_attrs.height - floor_height;
+					
 				}
 
+    			console.log("door_attrs", coords.y);
     			return coords;
     		},
 

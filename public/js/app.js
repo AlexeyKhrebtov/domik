@@ -2324,19 +2324,21 @@ vue__WEBPACK_IMPORTED_MODULE_0___default.a.use(vue_konva__WEBPACK_IMPORTED_MODUL
     // Рисуем этаж
     drawFloor: function drawFloor(f, i, door_id) {
       var door = this.stage.findOne('.di' + door_id),
-          door_attrs = door.getAttrs();
-      var coords = this.calcFloorCoords(door_attrs);
+          door_attrs = door.getAttrs(),
+          floor_door_id = 'fdi' + door_id; // привязка этажа к парадной
+
+      var coords = this.calcFloorCoords(floor_door_id, door_attrs);
       var layer = new Konva.Layer();
       var floor_rect = new Konva.Rect({
         x: coords.x,
         y: coords.y,
-        width: f.rooms.length * 30,
+        width: f.rooms.length * 30 || 10,
         height: 20,
         opacity: 0.5,
         fill: 'blue',
         stroke: 'black',
         strokeWidth: 2,
-        name: 'floor fi' + i,
+        name: 'floor fi' + i + ' ' + floor_door_id,
         CF_DATA: {
           name: 'fl'
         }
@@ -2344,18 +2346,25 @@ vue__WEBPACK_IMPORTED_MODULE_0___default.a.use(vue_konva__WEBPACK_IMPORTED_MODUL
       layer.add(floor_rect);
       this.stage.add(layer);
     },
-    calcFloorCoords: function calcFloorCoords(door_attrs) {
-      var coords = {
-        x: 50,
+    calcFloorCoords: function calcFloorCoords(floor_door_id, door_attrs) {
+      var floor_height = 20,
+          // px
+      coords = {
+        x: door_attrs.x,
         y: 50
       },
-          added_floors = this.stage.find('.floor');
-      console.log(added_floors);
+          // x - как у парадной
+      added_floors = this.stage.find('.' + floor_door_id);
 
       if (added_floors.length) {
-        coords.y = 50 + added_floors.length * 30;
+        // если есть добавленные этажи
+        coords.y = door_attrs.y + door_attrs.height - floor_height * (added_floors.length + 1);
+      } else {
+        // Если это первый этаж
+        coords.y = door_attrs.y + door_attrs.height - floor_height;
       }
 
+      console.log("door_attrs", coords.y);
       return coords;
     },
     // тестовое рисование
