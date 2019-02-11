@@ -2188,10 +2188,11 @@ __webpack_require__.r(__webpack_exports__);
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
-/* harmony import */ var vue__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! vue */ "./node_modules/vue/dist/vue.common.js");
-/* harmony import */ var vue__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(vue__WEBPACK_IMPORTED_MODULE_0__);
-/* harmony import */ var vue_konva__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! vue-konva */ "./node_modules/vue-konva/lib/index.js");
-/* harmony import */ var vue_konva__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(vue_konva__WEBPACK_IMPORTED_MODULE_1__);
+/* harmony import */ var _config_js__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../config.js */ "./resources/js/config.js");
+/* harmony import */ var vue__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! vue */ "./node_modules/vue/dist/vue.common.js");
+/* harmony import */ var vue__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(vue__WEBPACK_IMPORTED_MODULE_1__);
+/* harmony import */ var vue_konva__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! vue-konva */ "./node_modules/vue-konva/lib/index.js");
+/* harmony import */ var vue_konva__WEBPACK_IMPORTED_MODULE_2___default = /*#__PURE__*/__webpack_require__.n(vue_konva__WEBPACK_IMPORTED_MODULE_2__);
 //
 //
 //
@@ -2205,10 +2206,11 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
-//import konva from '../components/Konva.vue';
+ //import konva from '../components/Konva.vue';
 
 
-vue__WEBPACK_IMPORTED_MODULE_0___default.a.use(vue_konva__WEBPACK_IMPORTED_MODULE_1___default.a);
+
+vue__WEBPACK_IMPORTED_MODULE_1___default.a.use(vue_konva__WEBPACK_IMPORTED_MODULE_2___default.a);
 /* harmony default export */ __webpack_exports__["default"] = ({
   data: function data() {
     return {
@@ -2233,6 +2235,15 @@ vue__WEBPACK_IMPORTED_MODULE_0___default.a.use(vue_konva__WEBPACK_IMPORTED_MODUL
     // Konva
     stage: function stage() {
       return this.$refs.stage.getStage();
+    },
+    roomWidth: function roomWidth() {
+      return _config_js__WEBPACK_IMPORTED_MODULE_0__["APP_CONFIG"].ROOM_WIDTH + _config_js__WEBPACK_IMPORTED_MODULE_0__["APP_CONFIG"].ROOM_MARGIN.left + _config_js__WEBPACK_IMPORTED_MODULE_0__["APP_CONFIG"].ROOM_MARGIN.right;
+    },
+    roomHeight: function roomHeight() {
+      return _config_js__WEBPACK_IMPORTED_MODULE_0__["APP_CONFIG"].ROOM_HEIGHT + _config_js__WEBPACK_IMPORTED_MODULE_0__["APP_CONFIG"].ROOM_MARGIN.top + _config_js__WEBPACK_IMPORTED_MODULE_0__["APP_CONFIG"].ROOM_MARGIN.bottom;
+    },
+    floorHeight: function floorHeight() {
+      return this.roomHeight + _config_js__WEBPACK_IMPORTED_MODULE_0__["APP_CONFIG"].FLOOR_MARGIN.top + _config_js__WEBPACK_IMPORTED_MODULE_0__["APP_CONFIG"].FLOOR_MARGIN.bottom;
     }
   },
   watch: {
@@ -2267,14 +2278,18 @@ vue__WEBPACK_IMPORTED_MODULE_0___default.a.use(vue_konva__WEBPACK_IMPORTED_MODUL
           vw.drawDoor(door, i_d);
           door.floors.forEach(function (floor, i_f) {
             vw.drawFloor(floor, i_f, i_d);
+            floor.rooms.forEach(function (room, i_r) {
+              vw.drawRoom(room);
+            });
           });
         }
       });
     },
     drawDoor: function drawDoor(d, i) {
       var vm = this;
-      var height = d.floors.length * 20,
-          width = d.max_rooms * 30,
+      var height = vm.floorHeight * d.floors.length - (d.floors.length - 1) * _config_js__WEBPACK_IMPORTED_MODULE_0__["APP_CONFIG"].FLOOR_MARGIN.top,
+          //d.floors.length * 20,
+      width = vm.roomWidth * d.max_rooms + _config_js__WEBPACK_IMPORTED_MODULE_0__["APP_CONFIG"].FLOOR_MARGIN.left + _config_js__WEBPACK_IMPORTED_MODULE_0__["APP_CONFIG"].FLOOR_MARGIN.right,
           door_number = 'Парадная ' + d.number;
       var coords = this.calcDoorCoords();
       var layer = new Konva.Layer();
@@ -2283,7 +2298,7 @@ vue__WEBPACK_IMPORTED_MODULE_0___default.a.use(vue_konva__WEBPACK_IMPORTED_MODUL
         y: coords.y,
         width: width,
         height: height,
-        opacity: 0.4,
+        opacity: 0.3,
         fill: 'green',
         stroke: 'black',
         strokeWidth: 2,
@@ -2310,12 +2325,11 @@ vue__WEBPACK_IMPORTED_MODULE_0___default.a.use(vue_konva__WEBPACK_IMPORTED_MODUL
         x: 50,
         y: 50
       };
-      var door_margin = 10; // 10px
 
       if (added_doors.length == 0) {// Первая парадная - ничего не делаем
       } else {
         added_doors.forEach(function (d) {
-          coords.x = d.getAttr('x') + d.getAttr('width') + door_margin;
+          coords.x = d.getAttr('x') + d.getAttr('width') + _config_js__WEBPACK_IMPORTED_MODULE_0__["APP_CONFIG"].DOOR_MARGIN.left;
         });
       }
 
@@ -2323,7 +2337,8 @@ vue__WEBPACK_IMPORTED_MODULE_0___default.a.use(vue_konva__WEBPACK_IMPORTED_MODUL
     },
     // Рисуем этаж
     drawFloor: function drawFloor(f, i, door_id) {
-      var door = this.stage.findOne('.di' + door_id),
+      var vm = this,
+          door = this.stage.findOne('.di' + door_id),
           door_attrs = door.getAttrs(),
           floor_door_id = 'fdi' + door_id; // привязка этажа к парадной
 
@@ -2332,9 +2347,9 @@ vue__WEBPACK_IMPORTED_MODULE_0___default.a.use(vue_konva__WEBPACK_IMPORTED_MODUL
       var floor_rect = new Konva.Rect({
         x: coords.x,
         y: coords.y,
-        width: f.rooms.length * 30 || 10,
-        height: 20,
-        opacity: 0.5,
+        width: (_config_js__WEBPACK_IMPORTED_MODULE_0__["APP_CONFIG"].ROOM_WIDTH + _config_js__WEBPACK_IMPORTED_MODULE_0__["APP_CONFIG"].ROOM_MARGIN.left + _config_js__WEBPACK_IMPORTED_MODULE_0__["APP_CONFIG"].ROOM_MARGIN.right) * f.rooms.length || 10,
+        height: vm.roomHeight,
+        opacity: 0.3,
         fill: 'blue',
         stroke: 'black',
         strokeWidth: 2,
@@ -2347,24 +2362,57 @@ vue__WEBPACK_IMPORTED_MODULE_0___default.a.use(vue_konva__WEBPACK_IMPORTED_MODUL
       this.stage.add(layer);
     },
     calcFloorCoords: function calcFloorCoords(floor_door_id, door_attrs) {
-      var floor_height = 20,
-          // px
-      coords = {
-        x: door_attrs.x,
-        y: 50
+      var vm = this,
+          coords = {
+        x: 0,
+        y: 0
       },
           // x - как у парадной
       added_floors = this.stage.find('.' + floor_door_id);
+      coords.x = door_attrs.x + _config_js__WEBPACK_IMPORTED_MODULE_0__["APP_CONFIG"].FLOOR_MARGIN.left;
+      coords.y = door_attrs.y + door_attrs.height;
 
       if (added_floors.length) {
         // если есть добавленные этажи
-        coords.y = door_attrs.y + door_attrs.height - floor_height * (added_floors.length + 1);
+        coords.y -= (vm.roomHeight + _config_js__WEBPACK_IMPORTED_MODULE_0__["APP_CONFIG"].FLOOR_MARGIN.bottom) * (added_floors.length + 1);
       } else {
         // Если это первый этаж
-        coords.y = door_attrs.y + door_attrs.height - floor_height;
+        coords.y -= vm.roomHeight + _config_js__WEBPACK_IMPORTED_MODULE_0__["APP_CONFIG"].FLOOR_MARGIN.bottom;
       }
 
-      console.log("door_attrs", coords.y);
+      console.log("door_attrs", door_attrs, coords.y, vm.roomHeight);
+      return coords;
+    },
+
+    /**
+     * Рисуем квартиру
+     * @return {[type]} [description]
+     */
+    drawRoom: function drawRoom(r) {
+      var coords = this.calcRoomCoords();
+      var layer = new Konva.Layer();
+      var room_rect = new Konva.Rect({
+        x: coords.x,
+        y: coords.y,
+        width: _config_js__WEBPACK_IMPORTED_MODULE_0__["APP_CONFIG"].ROOM_WIDTH,
+        height: _config_js__WEBPACK_IMPORTED_MODULE_0__["APP_CONFIG"].ROOM_HEIGHT,
+        opacity: 0.3,
+        fill: 'orange',
+        stroke: 'black',
+        strokeWidth: 2,
+        name: 'room ri' + r.id,
+        CF_DATA: {
+          name: 'rm'
+        }
+      });
+      layer.add(room_rect);
+      this.stage.add(layer);
+    },
+    calcRoomCoords: function calcRoomCoords() {
+      var coords = {
+        x: 10,
+        y: 10
+      };
       return coords;
     },
     // тестовое рисование
@@ -2390,7 +2438,7 @@ vue__WEBPACK_IMPORTED_MODULE_0___default.a.use(vue_konva__WEBPACK_IMPORTED_MODUL
     drawGrid: function drawGrid() {
       var layer = new Konva.Layer(); // Y
 
-      for (var x = 0; x < this.stage.getWidth(); x += 10) {
+      for (var x = 0; x < this.stage.getWidth(); x += _config_js__WEBPACK_IMPORTED_MODULE_0__["APP_CONFIG"].GRID_STEP) {
         var line = new Konva.Line({
           points: [x, 0, x, this.stage.getHeight()],
           stroke: '#eee'
@@ -2399,7 +2447,7 @@ vue__WEBPACK_IMPORTED_MODULE_0___default.a.use(vue_konva__WEBPACK_IMPORTED_MODUL
       } // X
 
 
-      for (var y = 0; y < this.stage.getHeight(); y += 10) {
+      for (var y = 0; y < this.stage.getHeight(); y += _config_js__WEBPACK_IMPORTED_MODULE_0__["APP_CONFIG"].GRID_STEP) {
         var _line = new Konva.Line({
           points: [0, y, this.stage.getWidth(), y],
           stroke: '#eee'
@@ -2419,7 +2467,8 @@ vue__WEBPACK_IMPORTED_MODULE_0___default.a.use(vue_konva__WEBPACK_IMPORTED_MODUL
         this.tooltipLayer = new Konva.Layer();
         this.tooltip = new Konva.Text({
           text: "",
-          fontFamily: "Calibri",
+          //fontFamily: "Calibri",
+          fontFamily: "Helvetica",
           fontSize: 12,
           padding: 5,
           textFill: "red",
@@ -2440,8 +2489,10 @@ vue__WEBPACK_IMPORTED_MODULE_0___default.a.use(vue_konva__WEBPACK_IMPORTED_MODUL
       this.tooltipLayer.batchDraw();
     },
     hideTooltip: function hideTooltip() {
-      this.tooltip.hide();
-      this.tooltipLayer.draw();
+      if (this.tooltip) {
+        this.tooltip.hide();
+        this.tooltipLayer.draw();
+      }
     }
   }
 });
@@ -41974,7 +42025,27 @@ __webpack_require__.r(__webpack_exports__);
 __webpack_require__.r(__webpack_exports__);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "APP_CONFIG", function() { return APP_CONFIG; });
 var APP_CONFIG = {
-  API_URL: '/api/v1'
+  API_URL: '/api/v1',
+  GRID_STEP: 10,
+  // px - шаг клетки
+  // Отступы и размеры для отрисовк
+  ROOM_HEIGHT: 20,
+  ROOM_WIDTH: 30,
+  ROOM_MARGIN: {
+    top: 10,
+    bottom: 10,
+    left: 10,
+    right: 10
+  },
+  FLOOR_MARGIN: {
+    top: 10,
+    bottom: 10,
+    left: 10,
+    right: 10
+  },
+  DOOR_MARGIN: {
+    left: 10
+  }
 };
 
 /***/ }),
@@ -43305,8 +43376,8 @@ vue__WEBPACK_IMPORTED_MODULE_0___default.a.use(vuex__WEBPACK_IMPORTED_MODULE_1__
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
-__webpack_require__(/*! D:\xampp\apps\domik\resources\js\app.js */"./resources/js/app.js");
-module.exports = __webpack_require__(/*! D:\xampp\apps\domik\resources\sass\app.scss */"./resources/sass/app.scss");
+__webpack_require__(/*! /home/alkh/www/domik.localhost/resources/js/app.js */"./resources/js/app.js");
+module.exports = __webpack_require__(/*! /home/alkh/www/domik.localhost/resources/sass/app.scss */"./resources/sass/app.scss");
 
 
 /***/ })

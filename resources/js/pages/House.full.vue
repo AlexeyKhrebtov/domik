@@ -12,6 +12,7 @@
 </template>
 
 <script>
+	import { APP_CONFIG } from '../config.js';
 	//import konva from '../components/Konva.vue';
 	import Vue from 'vue';
 	import VueKonva from 'vue-konva'
@@ -44,6 +45,18 @@
 			// Konva
 			stage() {
 				return this.$refs.stage.getStage();
+			},
+
+			roomWidth() {
+				return APP_CONFIG.ROOM_WIDTH + APP_CONFIG.ROOM_MARGIN.left + APP_CONFIG.ROOM_MARGIN.right;
+			},
+
+			roomHeight() {
+				return APP_CONFIG.ROOM_HEIGHT + APP_CONFIG.ROOM_MARGIN.top + APP_CONFIG.ROOM_MARGIN.bottom;
+			},
+
+			floorHeight() {
+				return this.roomHeight + APP_CONFIG.FLOOR_MARGIN.top + APP_CONFIG.FLOOR_MARGIN.bottom;
 			}
     	},
 
@@ -80,12 +93,16 @@
 
     			const vw = this;
     			// Вывод
-    			this.houseFull.doors.forEach(function(door, i_d){
+    			this.houseFull.doors.forEach(function(door, i_d) {
     				if (door.max_rooms > 0) {
     					vw.drawDoor(door, i_d);
 
-    					door.floors.forEach(function(floor, i_f){
+    					door.floors.forEach(function(floor, i_f) {
     						vw.drawFloor(floor, i_f, i_d);
+
+    							floor.rooms.forEach(function(room, i_r) {
+    								vw.drawRoom(room);
+    							});
     					});
 					}
     			});
@@ -94,8 +111,8 @@
     		drawDoor(d, i) {
     			var vm = this;
 
-    			var height = d.floors.length * 20,
-    				width = d.max_rooms * 30,
+    			var height = (vm.floorHeight * d.floors.length) - ((d.floors.length-1) *APP_CONFIG.FLOOR_MARGIN.top),  //d.floors.length * 20,
+    				width = (vm.roomWidth * d.max_rooms) + APP_CONFIG.FLOOR_MARGIN.left + APP_CONFIG.FLOOR_MARGIN.right,
     				door_number = 'Парадная ' + d.number;
 
 
@@ -107,7 +124,7 @@
 					y: coords.y,
 					width: width,
 					height: height,
-					opacity: 0.4,
+					opacity: 0.3,
 					fill: 'green',
 					stroke: 'black',
 					strokeWidth: 2,
@@ -137,14 +154,12 @@
     			let added_doors = this.stage.find('.door'),
     				coords = {x:50, y:50};
 
-    			const door_margin = 10; // 10px
-
     			if (added_doors.length == 0) {
     				// Первая парадная - ничего не делаем
     			}
     			else {
     				added_doors.forEach(function(d){
-    					coords.x = d.getAttr('x') + d.getAttr('width') + door_margin;
+    					coords.x = d.getAttr('x') + d.getAttr('width') + APP_CONFIG.DOOR_MARGIN.left;
     				});
     			}
 
@@ -153,7 +168,8 @@
 
     		// Рисуем этаж
     		drawFloor(f, i, door_id)	{
-    			let door = this.stage.findOne('.di'+door_id),
+    			let vm = this,
+    				door = this.stage.findOne('.di'+door_id),
     				door_attrs = door.getAttrs(),
     				floor_door_id = 'fdi'+door_id; // привязка этажа к парадной
 				
@@ -163,9 +179,9 @@
 				var floor_rect = new Konva.Rect({
 					x: coords.x,
 					y: coords.y,
-					width: f.rooms.length*30 || 10,
-					height: 20,
-					opacity: 0.5,
+					width: (APP_CONFIG.ROOM_WIDTH + APP_CONFIG.ROOM_MARGIN.left + APP_CONFIG.ROOM_MARGIN.right) * f.rooms.length || 10,
+					height: vm.roomHeight,
+					opacity: 0.3,
 					fill: 'blue',
 					stroke: 'black',
 					strokeWidth: 2,
@@ -180,21 +196,57 @@
 
     		calcFloorCoords(floor_door_id, door_attrs) {
 
-    			let floor_height = 20, // px
-    				coords = {x: door_attrs.x, y: 50}, // x - как у парадной
+    			let vm = this,
+    				coords = {x: 0, y: 0}, // x - как у парадной
     				added_floors = this.stage.find('.'+floor_door_id);
+
+    			coords.x = door_attrs.x + APP_CONFIG.FLOOR_MARGIN.left;
+    			coords.y = door_attrs.y + door_attrs.height;
 
 				if (added_floors.length) {
 					// если есть добавленные этажи
-					coords.y = door_attrs.y + door_attrs.height - floor_height*(added_floors.length+1);
+					coords.y -= (vm.roomHeight + APP_CONFIG.FLOOR_MARGIN.bottom)*(added_floors.length+1);
 				}
 				else {
 					// Если это первый этаж
-					coords.y = door_attrs.y + door_attrs.height - floor_height;
+					coords.y -= (vm.roomHeight + APP_CONFIG.FLOOR_MARGIN.bottom);
 					
 				}
 
-    			console.log("door_attrs", coords.y);
+    			console.log("door_attrs", door_attrs, coords.y, vm.roomHeight);
+    			return coords;
+    		},
+
+    		/**
+    		 * Рисуем квартиру
+    		 * @return {[type]} [description]
+    		 */
+    		drawRoom(r) {
+    			var coords = this.calcRoomCoords();
+
+    			var layer = new Konva.Layer();
+    			var room_rect = new Konva.Rect({
+    				x: coords.x,
+					y: coords.y,
+					width: APP_CONFIG.ROOM_WIDTH,
+					height: APP_CONFIG.ROOM_HEIGHT,
+					opacity: 0.3,
+					fill: 'orange',
+					stroke: 'black',
+					strokeWidth: 2,
+					name: 'room ri' + r.id,
+					CF_DATA : {
+						name: 'rm'
+					}
+    			});
+
+    			layer.add(room_rect);
+    			this.stage.add(layer);
+    		},
+
+    		calcRoomCoords() {
+    			var coords = {x: 10, y: 10};
+
     			return coords;
     		},
 
@@ -228,7 +280,7 @@
     			var layer = new Konva.Layer();
 
     			// Y
-    			for (var x = 0; x < this.stage.getWidth(); x += 10) {
+    			for (var x = 0; x < this.stage.getWidth(); x += APP_CONFIG.GRID_STEP) {
     				let line = new Konva.Line({
 						points: [x, 0, x, this.stage.getHeight()],
 						stroke: '#eee'
@@ -237,7 +289,7 @@
 				}
 
 				// X
-				for (var y = 0; y < this.stage.getHeight(); y += 10) {
+				for (var y = 0; y < this.stage.getHeight(); y += APP_CONFIG.GRID_STEP) {
     				let line = new Konva.Line({
 						points: [0, y, this.stage.getWidth(), y],
 						stroke: '#eee'
@@ -257,7 +309,8 @@
     				this.tooltipLayer = new Konva.Layer();
     				this.tooltip = new Konva.Text({
 						text: "",
-						fontFamily: "Calibri",
+						//fontFamily: "Calibri",
+						fontFamily: "Helvetica",
 						fontSize: 12,
 						padding: 5,
 						textFill: "red",
@@ -279,8 +332,11 @@
 				this.tooltipLayer.batchDraw();
     		},
     		hideTooltip() {
-    			this.tooltip.hide();
-        		this.tooltipLayer.draw();
+    			if (this.tooltip) {
+    				this.tooltip.hide();
+        			this.tooltipLayer.draw();
+    			}
+    			
     		}
     	}
 	}
