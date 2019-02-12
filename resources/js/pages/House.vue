@@ -23,6 +23,8 @@
 			</div>
 			<div class="column">
 				<house-new></house-new>
+
+				<house-smart-new></house-smart-new>
 			</div>
 		</div>
 
@@ -38,7 +40,8 @@
 		},
 		
 		components: {
-			'house-new': require('./House.new.vue').default
+			'house-new': require('./House.new.vue').default,
+			'house-smart-new': require('./House.smart.new.vue').default
 		},
 
 		// Вычисляемые свойства для доступа к информации из хранилища

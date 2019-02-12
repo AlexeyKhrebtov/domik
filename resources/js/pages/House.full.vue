@@ -98,10 +98,10 @@
     					vw.drawDoor(door, i_d);
 
     					door.floors.forEach(function(floor, i_f) {
-    						vw.drawFloor(floor, i_f, i_d);
+    						vw.drawFloor(floor, i_d);
 
     							floor.rooms.forEach(function(room, i_r) {
-    								vw.drawRoom(room);
+    								vw.drawRoom(room, floor.id);
     							});
     					});
 					}
@@ -124,8 +124,9 @@
 					y: coords.y,
 					width: width,
 					height: height,
-					opacity: 0.3,
-					fill: 'green',
+					opacity: 1,
+					//fill: 'green',
+					fill: 'rgba(240, 240, 240, 0.5)',
 					stroke: 'black',
 					strokeWidth: 2,
 					name: 'door di'+i,
@@ -167,7 +168,8 @@
     		},
 
     		// Рисуем этаж
-    		drawFloor(f, i, door_id)	{
+    		drawFloor(f, door_id)	{
+    			console.log()
     			let vm = this,
     				door = this.stage.findOne('.di'+door_id),
     				door_attrs = door.getAttrs(),
@@ -181,11 +183,11 @@
 					y: coords.y,
 					width: (APP_CONFIG.ROOM_WIDTH + APP_CONFIG.ROOM_MARGIN.left + APP_CONFIG.ROOM_MARGIN.right) * f.rooms.length || 10,
 					height: vm.roomHeight,
-					opacity: 0.3,
-					fill: 'blue',
+					opacity: 1,
+					fill: 'rgba(255, 255, 255, 0.5)',
 					stroke: 'black',
 					strokeWidth: 2,
-					name: 'floor fi' + i + ' ' + floor_door_id,
+					name: 'floor fi' + f.id + ' ' + floor_door_id,
 					CF_DATA : {
 						name: 'fl'
 					}
@@ -213,7 +215,6 @@
 					
 				}
 
-    			console.log("door_attrs", door_attrs, coords.y, vm.roomHeight);
     			return coords;
     		},
 
@@ -221,31 +222,56 @@
     		 * Рисуем квартиру
     		 * @return {[type]} [description]
     		 */
-    		drawRoom(r) {
-    			var coords = this.calcRoomCoords();
-
+    		drawRoom(r, floor_id) {
+    			let floor = this.stage.findOne('.fi'+floor_id),
+    				fl_id = ' fl_id'+floor_id,
+    				floor_attrs = floor.getAttrs();
+    			
+    			var coords = this.calcRoomCoords(floor_attrs, fl_id);
+    			var vm = this;
     			var layer = new Konva.Layer();
     			var room_rect = new Konva.Rect({
     				x: coords.x,
 					y: coords.y,
 					width: APP_CONFIG.ROOM_WIDTH,
 					height: APP_CONFIG.ROOM_HEIGHT,
-					opacity: 0.3,
+					opacity: 1,
 					fill: 'orange',
 					stroke: 'black',
 					strokeWidth: 2,
-					name: 'room ri' + r.id,
+					name: 'room ri' + r.id + fl_id,
 					CF_DATA : {
-						name: 'rm'
+						name: 'Квартира ' + r.number
 					}
     			});
+
+    			room_rect.on("mousemove", function() {
+					let shape_data = this.getAttrs(),
+						tooltip_text = shape_data.CF_DATA.name;
+
+					vm.showTooltip(vm.stage.getPointerPosition(), tooltip_text);
+				});
+				room_rect.on("mouseout", function(){
+			        vm.hideTooltip();
+			    });
 
     			layer.add(room_rect);
     			this.stage.add(layer);
     		},
 
-    		calcRoomCoords() {
-    			var coords = {x: 10, y: 10};
+    		calcRoomCoords(floor_attrs, fl_id) {
+    			var coords = {x: 0, y: 0};
+
+    			var added_rooms = this.stage.find('.' + fl_id);
+
+    			// Первая квартира
+    			coords.x = floor_attrs.x + APP_CONFIG.ROOM_MARGIN.left;
+    			coords.y = floor_attrs.y + APP_CONFIG.ROOM_MARGIN.top;
+
+    			if (added_rooms.length) {
+    				// Есть добавленные квартиры
+    				coords.x += this.roomWidth * added_rooms.length;
+    			}
 
     			return coords;
     		},
