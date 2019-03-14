@@ -2702,6 +2702,12 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
+//
 /* harmony default export */ __webpack_exports__["default"] = ({
   data: function data() {
     return {
@@ -2716,6 +2722,7 @@ __webpack_require__.r(__webpack_exports__);
         completed: false
       }, {
         title: "Параметры дома",
+        step: 2,
         completed: false
       }]
     };
@@ -2727,6 +2734,27 @@ __webpack_require__.r(__webpack_exports__);
     },
     showCountDanger: function showCountDanger() {
       return this.totalRooms > 10000;
+    },
+    progress: function progress() {
+      var prgrs = 0;
+
+      if (this.house_name) {
+        prgrs += 10;
+      }
+
+      if (this.doors_count) {
+        prgrs += 10;
+      }
+
+      if (this.floors_per_door) {
+        prgrs += 10;
+      }
+
+      if (this.room_per_floor) {
+        prgrs += 10;
+      }
+
+      return prgrs; // %
     }
   }
 });
@@ -2967,7 +2995,7 @@ exports = module.exports = __webpack_require__(/*! ../../../node_modules/css-loa
 
 
 // module
-exports.push([module.i, "\n.fade-enter-active, .fade-leave-active {\n\ttransition: opacity 1s;\n}\n.fade-enter, .fade-leave-to /* .fade-leave-active до версии 2.1.8 */ {\n\topacity: 0;\n}\n", ""]);
+exports.push([module.i, "\n.fade-enter-active, .fade-leave-active {\n\ttransition: opacity 1s;\n}\n.fade-enter, .fade-leave-to /* .fade-leave-active до версии 2.1.8 */ {\n\topacity: 0;\n}\nprogress.progress::-webkit-progress-value {\n\ttransition: width 0.3s ease;\n}\nprogress.progress {\n\ttransition: all 0.3s ease;\n}\n\n", ""]);
 
 // exports
 
@@ -26674,6 +26702,16 @@ var render = function() {
             "section",
             { staticClass: "modal-card-body" },
             [
+              _c(
+                "progress",
+                {
+                  staticClass: "progress is-small",
+                  attrs: { max: "100" },
+                  domProps: { value: _vm.progress }
+                },
+                [_vm._v("15%")]
+              ),
+              _vm._v(" "),
               _c("div", { staticClass: "field" }, [
                 _c("label", { staticClass: "label" }, [
                   _vm._v("Название объекта")
@@ -26875,7 +26913,10 @@ var render = function() {
               ]),
               _vm._v(" "),
               _c("a", { staticClass: "button" }, [_vm._v("Next")]),
-              _vm._v("\n\n\t\t\t\t" + _vm._s(_vm.steps) + "\n\t\t\t")
+              _vm._v(" "),
+              _c("br"),
+              _vm._v(" "),
+              _c("code", [_c("pre", [_vm._v(_vm._s(_vm.steps))])])
             ],
             1
           ),
@@ -26911,10 +26952,10 @@ var staticRenderFns = [
     var _c = _vm._self._c || _h
     return _c("footer", { staticClass: "modal-card-foot" }, [
       _c("button", { staticClass: "button is-success" }, [
-        _vm._v("Save changes")
+        _vm._v("Сохранить объект")
       ]),
       _vm._v(" "),
-      _c("button", { staticClass: "button" }, [_vm._v("Cancel")])
+      _c("button", { staticClass: "button" }, [_vm._v("Сбросить")])
     ])
   }
 ]
@@ -43495,15 +43536,14 @@ __webpack_require__.r(__webpack_exports__);
 /*!************************************************!*\
   !*** ./resources/js/pages/House.smart.new.vue ***!
   \************************************************/
-/*! no static exports found */
+/*! exports provided: default */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _House_smart_new_vue_vue_type_template_id_c87d2c98___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./House.smart.new.vue?vue&type=template&id=c87d2c98& */ "./resources/js/pages/House.smart.new.vue?vue&type=template&id=c87d2c98&");
 /* harmony import */ var _House_smart_new_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./House.smart.new.vue?vue&type=script&lang=js& */ "./resources/js/pages/House.smart.new.vue?vue&type=script&lang=js&");
-/* harmony reexport (unknown) */ for(var __WEBPACK_IMPORT_KEY__ in _House_smart_new_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__) if(__WEBPACK_IMPORT_KEY__ !== 'default') (function(key) { __webpack_require__.d(__webpack_exports__, key, function() { return _House_smart_new_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__[key]; }) }(__WEBPACK_IMPORT_KEY__));
-/* harmony import */ var _House_smart_new_vue_vue_type_style_index_0_lang_css___WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./House.smart.new.vue?vue&type=style&index=0&lang=css& */ "./resources/js/pages/House.smart.new.vue?vue&type=style&index=0&lang=css&");
+/* empty/unused harmony star reexport *//* harmony import */ var _House_smart_new_vue_vue_type_style_index_0_lang_css___WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./House.smart.new.vue?vue&type=style&index=0&lang=css& */ "./resources/js/pages/House.smart.new.vue?vue&type=style&index=0&lang=css&");
 /* harmony import */ var _node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../../../node_modules/vue-loader/lib/runtime/componentNormalizer.js */ "./node_modules/vue-loader/lib/runtime/componentNormalizer.js");
 
 
@@ -43535,7 +43575,7 @@ component.options.__file = "resources/js/pages/House.smart.new.vue"
 /*!*************************************************************************!*\
   !*** ./resources/js/pages/House.smart.new.vue?vue&type=script&lang=js& ***!
   \*************************************************************************/
-/*! no static exports found */
+/*! exports provided: default */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";

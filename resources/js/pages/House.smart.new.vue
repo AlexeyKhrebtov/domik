@@ -11,7 +11,10 @@
 					<button class="delete" aria-label="close" @click="isModalActive = false"></button>
 				</header>
 				<section class="modal-card-body">
+					<progress class="progress is-small" :value="progress" max="100">15%</progress>
 					<!-- Content ... -->
+
+
 					<div class="field">
 						<label class="label">Название объекта</label>
 						<div class="control">
@@ -91,12 +94,15 @@
 					-->
 
 					<a class="button">Next</a>
+					<br>
+					<code><pre>{{ steps }}</pre></code>
 
-					{{ steps }}
+					
+
 				</section>
 				<footer class="modal-card-foot">
-					<button class="button is-success">Save changes</button>
-					<button class="button">Cancel</button>
+					<button class="button is-success">Сохранить объект</button>
+					<button class="button">Сбросить</button>
 				</footer>
 			</div>
 			<button class="modal-close is-large" aria-label="close" @click="isModalActive = false"></button>
@@ -109,7 +115,6 @@
 		data() {
 			return {
 				isModalActive: false,
-				
 
 				house_name: '',
 				doors_count: 0,
@@ -124,6 +129,7 @@
 					},
 					{
 						title: "Параметры дома",
+						step: 2,
 						completed: false
 					},
 				]
@@ -137,7 +143,17 @@
 			},
 			showCountDanger() {
 				return this.totalRooms > 10000
-			} 
+			},
+			progress() {
+				let prgrs = 0;
+
+				if (this.house_name) { prgrs += 10; }
+				if (this.doors_count) { prgrs += 10; }
+				if (this.floors_per_door) { prgrs += 10; }
+				if (this.room_per_floor) { prgrs += 10; }
+
+				return prgrs; // %
+			}
 		}
 	}
 </script>
@@ -149,4 +165,12 @@
 	.fade-enter, .fade-leave-to /* .fade-leave-active до версии 2.1.8 */ {
 		opacity: 0;
 	}
+
+	progress.progress::-webkit-progress-value {
+		transition: width 0.3s ease;
+	}
+	progress.progress {
+		transition: all 0.3s ease;
+	}
+	
 </style>
