@@ -2995,7 +2995,7 @@ exports = module.exports = __webpack_require__(/*! ../../../node_modules/css-loa
 
 
 // module
-exports.push([module.i, "\n.fade-enter-active, .fade-leave-active {\n\ttransition: opacity 1s;\n}\n.fade-enter, .fade-leave-to /* .fade-leave-active до версии 2.1.8 */ {\n\topacity: 0;\n}\nprogress.progress::-webkit-progress-value {\n\ttransition: width 0.3s ease;\n}\nprogress.progress {\n\ttransition: all 0.3s ease;\n}\n\n", ""]);
+exports.push([module.i, "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n/* Анимация для предупреждения */\n.fade-enter-active, .fade-leave-active {\n\ttransition: opacity 1s;\n}\n.fade-enter, .fade-leave-to /* .fade-leave-active до версии 2.1.8 */ {\n\topacity: 0;\n}\n\n/* Прогрессбар в конструкторе */\nprogress.progress::-webkit-progress-value {\n\ttransition: width 0.3s ease;\n}\nprogress.progress {\n\ttransition: all 0.3s ease;\n}\n\n", ""]);
 
 // exports
 
@@ -27171,17 +27171,81 @@ var render = function() {
   var _vm = this
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
-  return _vm._m(0)
+  return _c(
+    "section",
+    { staticClass: "hero is-fullheight is-default is-bold" },
+    [
+      _c("div", { staticClass: "hero-body" }, [
+        _c("div", { staticClass: "container has-text-centered" }, [
+          _c("div", { staticClass: "columns is-vcentered" }, [
+            _vm._m(0),
+            _vm._v(" "),
+            _c("div", { staticClass: "column is-6 is-offset-1" }, [
+              _c("h1", { staticClass: "title is-2" }, [
+                _vm._v(
+                  "\n                        Главная Domik\n                    "
+                )
+              ]),
+              _vm._v(" "),
+              _c("h2", { staticClass: "subtitle is-4" }, [
+                _vm._v(
+                  "\n                        Пока просто заглушка, планируется выводить сводку или еще что-то.\n                    "
+                )
+              ]),
+              _vm._v(" "),
+              _c("br"),
+              _vm._v(" "),
+              _c(
+                "p",
+                { staticClass: "has-text-centered" },
+                [
+                  _c(
+                    "router-link",
+                    {
+                      staticClass: "button is-medium is-info is-outlined",
+                      attrs: { to: { name: "houses" } }
+                    },
+                    [_vm._v("\n\t\t\t\t\t\t\tПродолжить\n\t\t\t\t\t\t")]
+                  )
+                ],
+                1
+              )
+            ])
+          ])
+        ])
+      ]),
+      _vm._v(" "),
+      _vm._m(1)
+    ]
+  )
 }
 var staticRenderFns = [
   function() {
     var _vm = this
     var _h = _vm.$createElement
     var _c = _vm._self._c || _h
-    return _c("div", [
-      _c("h1", [_vm._v("Главная страница Domik")]),
-      _vm._v(" "),
-      _c("p", [_vm._v("Сводка")])
+    return _c("div", { staticClass: "column is-5" }, [
+      _c("figure", { staticClass: "image is-4by3" }, [
+        _c("img", {
+          attrs: {
+            src:
+              "https://pp.userapi.com/c847124/v847124730/1c344b/eLGXET1yOj4.jpg",
+            alt: "Description"
+          }
+        })
+      ])
+    ])
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("div", { staticClass: "hero-foot" }, [
+      _c("div", { staticClass: "container" }, [
+        _c("div", { staticClass: "tabs is-centered" }, [
+          _c("ul", [_c("li", [_c("a", [_vm._v("And this is the bottom")])])])
+        ])
+      ])
     ])
   }
 ]

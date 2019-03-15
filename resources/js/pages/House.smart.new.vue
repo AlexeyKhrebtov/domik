@@ -13,8 +13,8 @@
 				<section class="modal-card-body">
 					<progress class="progress is-small" :value="progress" max="100">15%</progress>
 					<!-- Content ... -->
-
-
+					
+					
 					<div class="field">
 						<label class="label">Название объекта</label>
 						<div class="control">
@@ -159,6 +159,7 @@
 </script>
 
 <style>
+	/* Анимация для предупреждения */
 	.fade-enter-active, .fade-leave-active {
 		transition: opacity 1s;
 	}
@@ -166,11 +167,12 @@
 		opacity: 0;
 	}
 
+	/* Прогрессбар в конструкторе */
 	progress.progress::-webkit-progress-value {
 		transition: width 0.3s ease;
 	}
 	progress.progress {
 		transition: all 0.3s ease;
 	}
-	
+
 </style>
