@@ -2708,6 +2708,45 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 /* harmony default export */ __webpack_exports__["default"] = ({
   data: function data() {
     return {
@@ -2716,16 +2755,66 @@ __webpack_require__.r(__webpack_exports__);
       doors_count: 0,
       floors_per_door: 0,
       room_per_floor: 0,
+      current_step: 1,
       steps: [{
-        title: "Параметры дома",
+        title: "Название объекта",
         step: 1,
         completed: false
       }, {
         title: "Параметры дома",
         step: 2,
         completed: false
+      }, {
+        title: "Параметры квартир",
+        step: 3,
+        completed: false
+      }, {
+        title: "Проверка",
+        step: 4,
+        completed: false
+      }, {
+        title: "Завершение",
+        step: 5,
+        completed: false
       }]
     };
+  },
+  methods: {
+    isCurrentStep: function isCurrentStep(step) {
+      return this.current_step == step;
+    },
+    nextStep: function nextStep() {
+      var _this = this;
+
+      try {
+        switch (this.current_step) {
+          case 1:
+            if (this.house_name === '') {
+              throw new Error('Название объекта не может быть пустым');
+            }
+
+            break;
+
+          case 2:
+            if (this.doors_count === 0 || this.floors_per_door === 0 || this.room_per_floor === 0) {
+              throw new Error('Параметры не могут быть пустыми');
+            }
+
+            break;
+        }
+
+        this.steps.find(function (step) {
+          return step.step === _this.current_step;
+        }).completed = true;
+        this.current_step++;
+      } catch (e) {
+        console.log(e.name); // 'MyError'
+
+        console.log(e.message); // 'пользовательское сообщение'
+
+        alert(e.name + '\n' + e.message);
+      }
+    }
   },
   computed: {
     //totalRooms: vm => vm.doors_count * vm.floors_per_door * vm.room_per_floor
@@ -2995,7 +3084,7 @@ exports = module.exports = __webpack_require__(/*! ../../../node_modules/css-loa
 
 
 // module
-exports.push([module.i, "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n/* Анимация для предупреждения */\n.fade-enter-active, .fade-leave-active {\n\ttransition: opacity 1s;\n}\n.fade-enter, .fade-leave-to /* .fade-leave-active до версии 2.1.8 */ {\n\topacity: 0;\n}\n\n/* Прогрессбар в конструкторе */\nprogress.progress::-webkit-progress-value {\n\ttransition: width 0.3s ease;\n}\nprogress.progress {\n\ttransition: all 0.3s ease;\n}\n\n", ""]);
+exports.push([module.i, "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n/* Анимация для предупреждения */\n.fade-enter-active, .fade-leave-active {\n\ttransition: opacity 1s;\n}\n.fade-enter, .fade-leave-to /* .fade-leave-active до версии 2.1.8 */ {\n\topacity: 0;\n}\n\n/* Прогрессбар в конструкторе */\nprogress.progress::-webkit-progress-value {\n\ttransition: width 0.3s ease;\n}\nprogress.progress {\n\ttransition: all 0.3s ease;\n}\n\n", ""]);
 
 // exports
 
@@ -26698,86 +26787,47 @@ var render = function() {
             })
           ]),
           _vm._v(" "),
-          _c(
-            "section",
-            { staticClass: "modal-card-body" },
-            [
-              _c(
-                "progress",
-                {
-                  staticClass: "progress is-small",
-                  attrs: { max: "100" },
-                  domProps: { value: _vm.progress }
-                },
-                [_vm._v("15%")]
-              ),
-              _vm._v(" "),
-              _c("div", { staticClass: "field" }, [
-                _c("label", { staticClass: "label" }, [
-                  _vm._v("Название объекта")
-                ]),
-                _vm._v(" "),
-                _c("div", { staticClass: "control" }, [
-                  _c("input", {
-                    directives: [
-                      {
-                        name: "model",
-                        rawName: "v-model.trim",
-                        value: _vm.house_name,
-                        expression: "house_name",
-                        modifiers: { trim: true }
-                      }
-                    ],
-                    staticClass: "input",
-                    attrs: {
-                      type: "text",
-                      placeholder: "Введите название объекта"
-                    },
-                    domProps: { value: _vm.house_name },
-                    on: {
-                      input: function($event) {
-                        if ($event.target.composing) {
-                          return
-                        }
-                        _vm.house_name = $event.target.value.trim()
-                      },
-                      blur: function($event) {
-                        _vm.$forceUpdate()
-                      }
-                    }
-                  })
-                ]),
-                _vm._v(" "),
-                _c("p", { staticClass: "help" }, [
-                  _vm._v("This is a help text")
-                ])
-              ]),
-              _vm._v(" "),
-              _c("div", { staticClass: "field is-horizontal" }, [
-                _c("div", { staticClass: "field-label is-normal" }, [
-                  _c("label", { staticClass: "label" }, [
-                    _vm._v("Парадных = " + _vm._s(_vm.doors_count))
-                  ])
-                ]),
-                _vm._v(" "),
-                _c("div", { staticClass: "field-body" }, [
+          _c("section", { staticClass: "modal-card-body" }, [
+            _c(
+              "progress",
+              {
+                staticClass: "progress is-small",
+                attrs: { max: "100" },
+                domProps: { value: _vm.progress }
+              },
+              [_vm._v("15%")]
+            ),
+            _vm._v(" "),
+            _vm.isCurrentStep(1)
+              ? _c("div", { staticClass: "step" }, [
                   _c("div", { staticClass: "field" }, [
+                    _c("label", { staticClass: "label" }, [
+                      _vm._v("Название объекта")
+                    ]),
+                    _vm._v(" "),
                     _c("div", { staticClass: "control" }, [
                       _c("input", {
                         directives: [
                           {
                             name: "model",
-                            rawName: "v-model.number",
-                            value: _vm.doors_count,
-                            expression: "doors_count",
-                            modifiers: { number: true }
+                            rawName: "v-model.trim",
+                            value: _vm.house_name,
+                            expression: "house_name",
+                            modifiers: { trim: true }
                           }
                         ],
-                        attrs: { type: "range", min: "0", max: "20" },
-                        domProps: { value: _vm.doors_count },
+                        staticClass: "input",
+                        attrs: {
+                          type: "text",
+                          placeholder: "Введите название объекта"
+                        },
+                        domProps: { value: _vm.house_name },
                         on: {
-                          __r: function($event) {
-                            _vm.doors_count = _vm._n($event.target.value)
+                          input: function($event) {
+                            if ($event.target.composing) {
+                              return
+                            }
+                            _vm.house_name = $event.target.value.trim()
                           },
                           blur: function($event) {
                             _vm.$forceUpdate()
@@ -26787,141 +26837,226 @@ var render = function() {
                     ]),
                     _vm._v(" "),
                     _c("p", { staticClass: "help" }, [
-                      _vm._v("Парадных - " + _vm._s(_vm.doors_count))
+                      _vm._v("This is a help text")
                     ])
                   ])
                 ])
-              ]),
-              _vm._v(" "),
-              _c("div", { staticClass: "field is-horizontal" }, [
-                _c("div", { staticClass: "field-label is-normal" }, [
-                  _c("label", { staticClass: "label" }, [
-                    _vm._v("Этажей = " + _vm._s(_vm.floors_per_door))
-                  ])
-                ]),
-                _vm._v(" "),
-                _c("div", { staticClass: "field-body" }, [
-                  _c("div", { staticClass: "field" }, [
-                    _c("div", { staticClass: "control" }, [
-                      _c("input", {
-                        directives: [
-                          {
-                            name: "model",
-                            rawName: "v-model.number",
-                            value: _vm.floors_per_door,
-                            expression: "floors_per_door",
-                            modifiers: { number: true }
-                          }
-                        ],
-                        attrs: { type: "range", min: "0", max: "30" },
-                        domProps: { value: _vm.floors_per_door },
-                        on: {
-                          __r: function($event) {
-                            _vm.floors_per_door = _vm._n($event.target.value)
-                          },
-                          blur: function($event) {
-                            _vm.$forceUpdate()
-                          }
-                        }
-                      })
-                    ]),
-                    _vm._v(" "),
-                    _c("p", { staticClass: "help" }, [
-                      _vm._v("Этажей - " + _vm._s(_vm.floors_per_door))
-                    ])
-                  ])
-                ])
-              ]),
-              _vm._v(" "),
-              _c("div", { staticClass: "field is-horizontal" }, [
-                _c("div", { staticClass: "field-label is-normal" }, [
-                  _c("label", { staticClass: "label" }, [
-                    _vm._v("Квартир на этаже = " + _vm._s(_vm.room_per_floor))
-                  ])
-                ]),
-                _vm._v(" "),
-                _c("div", { staticClass: "field-body" }, [
-                  _c("div", { staticClass: "field" }, [
-                    _c("div", { staticClass: "control" }, [
-                      _c("input", {
-                        directives: [
-                          {
-                            name: "model",
-                            rawName: "v-model.number",
-                            value: _vm.room_per_floor,
-                            expression: "room_per_floor",
-                            modifiers: { number: true }
-                          }
-                        ],
-                        attrs: { type: "range", min: "0", max: "20" },
-                        domProps: { value: _vm.room_per_floor },
-                        on: {
-                          __r: function($event) {
-                            _vm.room_per_floor = _vm._n($event.target.value)
-                          },
-                          blur: function($event) {
-                            _vm.$forceUpdate()
-                          }
-                        }
-                      })
-                    ]),
-                    _vm._v(" "),
-                    _c("p", { staticClass: "help" }, [
-                      _vm._v("квартир на этаже - " + _vm._s(_vm.room_per_floor))
-                    ])
-                  ])
-                ])
-              ]),
-              _vm._v(" "),
-              _c("div", { staticClass: "field is-horizontal" }, [
-                _vm._m(0),
-                _vm._v(" "),
-                _c("div", { staticClass: "field-body" }, [
-                  _c("div", { staticClass: "field" }, [
-                    _vm._v(
-                      "\n\t\t\t\t\t\t\t" +
-                        _vm._s(_vm.totalRooms) +
-                        " -- " +
-                        _vm._s(_vm.showCountDanger) +
-                        "\n\t\t\t\t\t\t"
-                    )
-                  ])
-                ])
-              ]),
-              _vm._v(" "),
-              _c("transition", { attrs: { name: "fade" } }, [
-                _c(
+              : _vm._e(),
+            _vm._v(" "),
+            _vm.isCurrentStep(2)
+              ? _c(
                   "div",
-                  {
-                    directives: [
-                      {
-                        name: "show",
-                        rawName: "v-show",
-                        value: _vm.showCountDanger,
-                        expression: "showCountDanger"
-                      }
-                    ],
-                    staticClass: "notification is-danger"
-                  },
+                  { staticClass: "step" },
                   [
-                    _c("button", { staticClass: "delete" }),
-                    _vm._v(
-                      "\n\t\t\t\t\t\tА не слишком ли много квартир будет?\n\t\t\t\t\t"
-                    )
-                  ]
+                    _c("div", { staticClass: "field is-horizontal" }, [
+                      _c("div", { staticClass: "field-label is-normal" }, [
+                        _c("label", { staticClass: "label" }, [
+                          _vm._v("Парадных = " + _vm._s(_vm.doors_count))
+                        ])
+                      ]),
+                      _vm._v(" "),
+                      _c("div", { staticClass: "field-body" }, [
+                        _c("div", { staticClass: "field" }, [
+                          _c("div", { staticClass: "control" }, [
+                            _c("input", {
+                              directives: [
+                                {
+                                  name: "model",
+                                  rawName: "v-model.number",
+                                  value: _vm.doors_count,
+                                  expression: "doors_count",
+                                  modifiers: { number: true }
+                                }
+                              ],
+                              attrs: { type: "range", min: "0", max: "20" },
+                              domProps: { value: _vm.doors_count },
+                              on: {
+                                __r: function($event) {
+                                  _vm.doors_count = _vm._n($event.target.value)
+                                },
+                                blur: function($event) {
+                                  _vm.$forceUpdate()
+                                }
+                              }
+                            })
+                          ]),
+                          _vm._v(" "),
+                          _c("p", { staticClass: "help" }, [
+                            _vm._v("Парадных - " + _vm._s(_vm.doors_count))
+                          ])
+                        ])
+                      ])
+                    ]),
+                    _vm._v(" "),
+                    _c("div", { staticClass: "field is-horizontal" }, [
+                      _c("div", { staticClass: "field-label is-normal" }, [
+                        _c("label", { staticClass: "label" }, [
+                          _vm._v("Этажей = " + _vm._s(_vm.floors_per_door))
+                        ])
+                      ]),
+                      _vm._v(" "),
+                      _c("div", { staticClass: "field-body" }, [
+                        _c("div", { staticClass: "field" }, [
+                          _c("div", { staticClass: "control" }, [
+                            _c("input", {
+                              directives: [
+                                {
+                                  name: "model",
+                                  rawName: "v-model.number",
+                                  value: _vm.floors_per_door,
+                                  expression: "floors_per_door",
+                                  modifiers: { number: true }
+                                }
+                              ],
+                              attrs: { type: "range", min: "0", max: "30" },
+                              domProps: { value: _vm.floors_per_door },
+                              on: {
+                                __r: function($event) {
+                                  _vm.floors_per_door = _vm._n(
+                                    $event.target.value
+                                  )
+                                },
+                                blur: function($event) {
+                                  _vm.$forceUpdate()
+                                }
+                              }
+                            })
+                          ]),
+                          _vm._v(" "),
+                          _c("p", { staticClass: "help" }, [
+                            _vm._v("Этажей - " + _vm._s(_vm.floors_per_door))
+                          ])
+                        ])
+                      ])
+                    ]),
+                    _vm._v(" "),
+                    _c("div", { staticClass: "field is-horizontal" }, [
+                      _c("div", { staticClass: "field-label is-normal" }, [
+                        _c("label", { staticClass: "label" }, [
+                          _vm._v(
+                            "Квартир на этаже = " + _vm._s(_vm.room_per_floor)
+                          )
+                        ])
+                      ]),
+                      _vm._v(" "),
+                      _c("div", { staticClass: "field-body" }, [
+                        _c("div", { staticClass: "field" }, [
+                          _c("div", { staticClass: "control" }, [
+                            _c("input", {
+                              directives: [
+                                {
+                                  name: "model",
+                                  rawName: "v-model.number",
+                                  value: _vm.room_per_floor,
+                                  expression: "room_per_floor",
+                                  modifiers: { number: true }
+                                }
+                              ],
+                              attrs: { type: "range", min: "0", max: "20" },
+                              domProps: { value: _vm.room_per_floor },
+                              on: {
+                                __r: function($event) {
+                                  _vm.room_per_floor = _vm._n(
+                                    $event.target.value
+                                  )
+                                },
+                                blur: function($event) {
+                                  _vm.$forceUpdate()
+                                }
+                              }
+                            })
+                          ]),
+                          _vm._v(" "),
+                          _c("p", { staticClass: "help" }, [
+                            _vm._v(
+                              "квартир на этаже - " + _vm._s(_vm.room_per_floor)
+                            )
+                          ])
+                        ])
+                      ])
+                    ]),
+                    _vm._v(" "),
+                    _c("div", { staticClass: "field is-horizontal" }, [
+                      _vm._m(0),
+                      _vm._v(" "),
+                      _c("div", { staticClass: "field-body" }, [
+                        _c("div", { staticClass: "field" }, [
+                          _vm._v(
+                            "\n\t\t\t\t\t\t\t\t" +
+                              _vm._s(_vm.totalRooms) +
+                              " -- " +
+                              _vm._s(_vm.showCountDanger) +
+                              "\n\t\t\t\t\t\t\t"
+                          )
+                        ])
+                      ])
+                    ]),
+                    _vm._v(" "),
+                    _c("transition", { attrs: { name: "fade" } }, [
+                      _c(
+                        "div",
+                        {
+                          directives: [
+                            {
+                              name: "show",
+                              rawName: "v-show",
+                              value: _vm.showCountDanger,
+                              expression: "showCountDanger"
+                            }
+                          ],
+                          staticClass: "notification is-danger"
+                        },
+                        [
+                          _c("button", { staticClass: "delete" }),
+                          _vm._v(
+                            "\n\t\t\t\t\t\t\tА не слишком ли много квартир будет?\n\t\t\t\t\t\t"
+                          )
+                        ]
+                      )
+                    ])
+                  ],
+                  1
                 )
-              ]),
+              : _vm._e(),
+            _vm._v(" "),
+            _vm.isCurrentStep(3)
+              ? _c("div", { staticClass: "step" }, [
+                  _vm._v("\n\t\t\t\t\tПараметры квартиры:\n\t\t\t\t\t"),
+                  _vm._m(1),
+                  _vm._v(" "),
+                  _vm._m(2)
+                ])
+              : _vm._e(),
+            _vm._v(" "),
+            _vm.isCurrentStep(4)
+              ? _c("div", { staticClass: "step" }, [
+                  _vm._v("\n\t\t\t\t\tИтоговая проверка\n\t\t\t\t")
+                ])
+              : _vm._e(),
+            _vm._v(" "),
+            _c("div", { staticClass: "field is-grouped" }, [
+              _vm._m(3),
               _vm._v(" "),
-              _c("a", { staticClass: "button" }, [_vm._v("Next")]),
-              _vm._v(" "),
-              _c("br"),
-              _vm._v(" "),
-              _c("code", [_c("pre", [_vm._v(_vm._s(_vm.steps))])])
-            ],
-            1
-          ),
+              _c("p", { staticClass: "control" }, [
+                _c(
+                  "a",
+                  {
+                    staticClass: "button is-outlined",
+                    on: { click: _vm.nextStep }
+                  },
+                  [_c("span", [_vm._v("Далее")]), _vm._v(" "), _vm._m(4)]
+                )
+              ])
+            ]),
+            _vm._v(" "),
+            _c("br"),
+            _vm._v(" "),
+            _c("code", [_c("pre", [_vm._v(_vm._s(_vm.current_step))])]),
+            _vm._v(" "),
+            _c("code", [_c("pre", [_vm._v(_vm._s(_vm.steps))])])
+          ]),
           _vm._v(" "),
-          _vm._m(1)
+          _vm._m(5)
         ]),
         _vm._v(" "),
         _c("button", {
@@ -26944,6 +27079,58 @@ var staticRenderFns = [
     var _c = _vm._self._c || _h
     return _c("div", { staticClass: "field-label is-normal" }, [
       _c("label", { staticClass: "label" }, [_vm._v("Всего квартир ")])
+    ])
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("div", { staticClass: "field" }, [
+      _c("label", { staticClass: "label" }, [_vm._v("Кабель")]),
+      _vm._v(" "),
+      _c("div", { staticClass: "control" }, [
+        _c("input", {
+          staticClass: "input",
+          attrs: { type: "text", placeholder: "Text input" }
+        })
+      ]),
+      _vm._v(" "),
+      _c("p", { staticClass: "help" }, [_vm._v("This is a help text")])
+    ])
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("div", { staticClass: "field" }, [
+      _c("label", { staticClass: "label" }, [_vm._v("Ящик")]),
+      _vm._v(" "),
+      _c("div", { staticClass: "control" }, [
+        _c("input", {
+          staticClass: "input",
+          attrs: { type: "text", placeholder: "Text input" }
+        })
+      ]),
+      _vm._v(" "),
+      _c("p", { staticClass: "help" }, [_vm._v("This is a help text")])
+    ])
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("p", { staticClass: "control" }, [
+      _c("a", { staticClass: "button is-outlined", attrs: { disabled: "" } }, [
+        _c("span", [_vm._v("Назад")])
+      ])
+    ])
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("span", { staticClass: "icon is-small" }, [
+      _c("i", { staticClass: "fas fa-times" })
     ])
   },
   function() {
