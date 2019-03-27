@@ -24,7 +24,12 @@ export default new VueRouter({
 					path: '',
 					name: 'main',
 					component: Vue.component( 'Main', require( './pages/Main.vue' ).default )
-				},							
+				},
+				{
+					path: '/constructor',
+					name: 'constructor',
+					component: Vue.component( 'Constructor', require('./pages/Constructor.vue').default )
+				},						
 				{
 					path: '/houses',
 					name: 'houses',

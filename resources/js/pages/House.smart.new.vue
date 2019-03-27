@@ -11,7 +11,7 @@
 					<button class="delete" aria-label="close" @click="isModalActive = false"></button>
 				</header>
 				<section class="modal-card-body">
-					<progress class="progress is-small" :value="progress" max="100">15%</progress>
+					<progress class="progress is-small" :value="progress" max="100"></progress>
 					<!-- Content ... -->
 					
 					<div class="step" v-if="isCurrentStep(1)">

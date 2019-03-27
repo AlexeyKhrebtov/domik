@@ -57,13 +57,31 @@
                         </button>
                     </form>
                 </div>
-                    <p class="has-text-grey">
-                        @if (Route::has('password.request'))
-                            <a class="" href="{{ route('password.request') }}">
-                                Забыли пароль?
-                            </a>
-                        @endif
-                    </p>
+                <p class="has-text-grey">
+                    @if (Route::has('password.request'))
+                        <a class="" href="{{ route('password.request') }}">
+                            Забыли пароль?
+                        </a>
+                    @endif
+                </p>
+                <hr>
+                <div class="box">
+                    <div class="field">
+                        <label for="demotest" class="col-md-4 col-form-label text-md-right">Тестовый доступ</label>
+
+                        <div class="control has-icons-left">
+                            <input id="demotest" type="email" class="input is-warning" value="demotest@demotest.ru" readonly>
+                            <span class="icon is-small is-left">
+                                <i class="fas fa-beer"></i>
+                            </span>
+                        </div>
+
+                        <p>Пароль:</p>
+                        <code>demotest</code>
+                        <!-- 111111 -->
+                    </div>
+
+                </div>
             </div>
         </div>
     </div>

@@ -19,5 +19,6 @@
 
     <!-- Scripts -->
     <!-- <script src="{{ mix('js/app.js') }}" defer></script> -->
+    <script defer src="https://use.fontawesome.com/releases/v5.8.1/js/all.js"></script>
 </body>
 </html>

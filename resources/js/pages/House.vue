@@ -22,6 +22,9 @@
 				<span v-show="housesLoadStatus == 3">houses loaded unsuccessfully!</span>
 			</div>
 			<div class="column">
+				<div>
+					<router-link :to="{name: 'constructor'}">Конструктор</router-link>
+				</div>
 				<house-new></house-new>
 
 				<house-smart-new></house-smart-new>
